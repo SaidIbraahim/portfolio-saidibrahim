@@ -1,14 +1,15 @@
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 interface AnimatedTextProps {
-  text: string;
+  text?: string;
   className?: string;
   once?: boolean;
+  children?: ReactNode;
 }
 
-const AnimatedText = ({ text, className, once = false }: AnimatedTextProps) => {
+const AnimatedText = ({ text, className, once = false, children }: AnimatedTextProps) => {
   const elementRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -45,7 +46,7 @@ const AnimatedText = ({ text, className, once = false }: AnimatedTextProps) => {
       className={cn("opacity-0", className)}
       style={{ willChange: 'opacity, transform' }}
     >
-      {text}
+      {children || text}
     </div>
   );
 };

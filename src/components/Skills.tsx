@@ -1,4 +1,3 @@
-
 import { 
   Code2, Database, PenTool, Figma, 
   Terminal, Globe, Laptop, Server, 
@@ -54,7 +53,6 @@ const Skills = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="space-y-6">
             <AnimatedText 
-              text=""
               className="text-center"
               once={true}
             >
@@ -75,7 +73,6 @@ const Skills = () => {
           
           <div className="space-y-6">
             <AnimatedText 
-              text=""
               className="text-center"
               once={true}
             >
@@ -96,7 +93,6 @@ const Skills = () => {
           
           <div className="space-y-6">
             <AnimatedText 
-              text=""
               className="text-center"
               once={true}
             >

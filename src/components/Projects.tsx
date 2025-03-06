@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import ProjectCard, { ProjectProps } from '@/components/ui/ProjectCard';
 import AnimatedText from '@/components/ui/AnimatedText';
@@ -59,7 +58,6 @@ const Projects = () => {
           {projectsData.map((project, index) => (
             <AnimatedText 
               key={index}
-              text=""
               className="h-full"
               once={true}
             >
@@ -70,7 +68,6 @@ const Projects = () => {
         
         <div className="mt-12 text-center">
           <AnimatedText 
-            text=""
             className=""
             once={true}
           >
