@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import ProjectCard, { ProjectProps } from '@/components/ui/ProjectCard';
 import AnimatedText from '@/components/ui/AnimatedText';
@@ -39,7 +40,7 @@ const projectsData: ProjectProps[] = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 px-6">
+    <section id="projects" className="py-24 px-6 bg-gradient-to-b from-background to-blue/5">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <AnimatedText 
@@ -72,7 +73,7 @@ const Projects = () => {
             once={true}
           >
             <a href="https://projects.saidibrahim.tech" target="_blank" rel="noopener noreferrer">
-              <Button className="rounded-full px-6 py-6 bg-primary hover:bg-primary/90">
+              <Button className="rounded-full px-6 py-6 bg-blue hover:bg-blue/90 text-white">
                 View All Projects
               </Button>
             </a>

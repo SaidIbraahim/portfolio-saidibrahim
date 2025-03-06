@@ -46,7 +46,7 @@ const AnimatedText = ({ text, className, once = false, children }: AnimatedTextP
       className={cn("opacity-0", className)}
       style={{ willChange: 'opacity, transform' }}
     >
-      {children || text}
+      {children || (text && <span className="text-balance">{text}</span>)}
     </div>
   );
 };

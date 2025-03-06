@@ -17,7 +17,7 @@ const ProjectCard = ({ title, description, image, technologies, demoLink, repoLi
   
   return (
     <div 
-      className="rounded-2xl overflow-hidden group h-full glass-card transition-all duration-300"
+      className="rounded-2xl overflow-hidden group h-full glass-card transition-all duration-300 hover:shadow-lg hover:shadow-accent/20"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -32,7 +32,7 @@ const ProjectCard = ({ title, description, image, technologies, demoLink, repoLi
                 href={demoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-sm bg-accent text-white px-3 py-1.5 rounded-full hover:bg-accent/90 transition-colors"
+                className="flex items-center gap-1 text-sm bg-blue text-white px-3 py-1.5 rounded-full hover:bg-blue/90 transition-colors"
               >
                 <ExternalLink size={14} />
                 <span>Live Demo</span>
@@ -65,15 +65,15 @@ const ProjectCard = ({ title, description, image, technologies, demoLink, repoLi
         </div>
       </div>
       
-      <div className="p-6">
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <div className="p-6 border-t border-gold/30">
+        <h3 className="text-xl font-bold mb-2 text-blue">{title}</h3>
         <p className="text-muted-foreground mb-4">{description}</p>
         
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech, index) => (
             <span 
               key={index}
-              className="text-xs px-2.5 py-1 rounded-full bg-accent/10 text-accent font-medium"
+              className="text-xs px-2.5 py-1 rounded-full bg-gold/20 text-gold font-medium"
             >
               {tech}
             </span>
