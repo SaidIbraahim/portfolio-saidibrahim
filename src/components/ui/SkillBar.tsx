@@ -40,19 +40,19 @@ const SkillBar = ({ name, level, icon }: SkillProps) => {
   
   // Determine the color based on the skill level
   const getColorClass = () => {
-    if (level >= 80) return 'bg-blue';
-    if (level >= 60) return 'bg-gold';
-    return 'bg-crimson';
+    if (level >= 80) return 'bg-cvs-blue';
+    if (level >= 60) return 'bg-cvs-red';
+    return 'bg-primary/70';
   };
   
   return (
     <div 
       id={`skill-${name.replace(/\s+/g, '-').toLowerCase()}`}
-      className="glass-card p-4 rounded-xl relative flex flex-col h-full border border-gold/20"
+      className="glass-card p-4 rounded-xl relative flex flex-col h-full border border-cvs-red/20"
     >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          {icon && <span className="text-gold">{icon}</span>}
+          {icon && <span className="text-cvs-red">{icon}</span>}
           <h4 className="font-medium">{name}</h4>
         </div>
         <span className="text-sm text-muted-foreground">{level}%</span>

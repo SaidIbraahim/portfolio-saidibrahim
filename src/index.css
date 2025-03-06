@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -15,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 206 100% 36%; /* #0076bb blue */
+    --primary: 213 98% 25%; /* #013e7d cvs blue */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96%;
@@ -24,10 +25,10 @@
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 43 57% 70%; /* #ddbd86 gold */
-    --accent-foreground: 222 47% 11%;
+    --accent: 352 79% 49%; /* #e31836 cvs red */
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 356 84% 47%; /* #d0202e crimson */
+    --destructive: 352 79% 49%; /* #e31836 cvs red */
     --destructive-foreground: 210 40% 98%;
 
     --border: 214 32% 91%;
@@ -95,12 +96,12 @@
   }
 
   .nav-link {
-    @apply relative py-2 px-4 transition-colors hover:text-blue;
+    @apply relative py-2 px-4 transition-colors hover:text-cvs-blue;
   }
 
   .nav-link::after {
     content: '';
-    @apply absolute left-0 bottom-0 w-0 h-[2px] bg-blue transition-all duration-300;
+    @apply absolute left-0 bottom-0 w-0 h-[2px] bg-cvs-blue transition-all duration-300;
   }
 
   .nav-link:hover::after {
@@ -115,17 +116,13 @@
     @apply transition-transform hover:-translate-y-1;
   }
 
-  /* Custom theme styles */
-  .gold-gradient {
-    background: linear-gradient(135deg, #ddbd86 0%, #e8d2a6 100%);
+  /* Custom theme styles - updated to CVS colors */
+  .cvs-red-gradient {
+    background: linear-gradient(135deg, #e31836 0%, #ff5c74 100%);
   }
 
-  .blue-gradient {
-    background: linear-gradient(135deg, #0076bb 0%, #4ca5e8 100%);
-  }
-
-  .crimson-gradient {
-    background: linear-gradient(135deg, #d0202e 0%, #e84c57 100%);
+  .cvs-blue-gradient {
+    background: linear-gradient(135deg, #013e7d 0%, #1266b3 100%);
   }
 
   .accent-border {

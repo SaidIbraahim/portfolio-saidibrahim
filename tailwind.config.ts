@@ -66,7 +66,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom theme colors
+				// Custom theme colors - updated to CVS colors
+				cvs: {
+					red: '#e31836',
+					blue: '#013e7d',
+				},
+				// Keep old colors for backward compatibility
 				gold: '#ddbd86',
 				crimson: '#d0202e',
 				blue: '#0076bb',
