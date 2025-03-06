@@ -63,11 +63,11 @@
 
 @layer components {
   .hero-gradient {
-    @apply absolute w-full max-w-[85rem] h-full max-h-[40rem] bg-accent/20 blur-[6rem] top-[-5rem] -z-10 rounded-full opacity-70;
+    @apply absolute w-full max-w-[85rem] h-full max-h-[40rem] bg-accent/10 blur-[6rem] top-[-5rem] -z-10 rounded-full opacity-70;
   }
 
   .glass-card {
-    @apply bg-white/30 backdrop-blur-md border border-white/20 shadow-lg;
+    @apply bg-white/30 backdrop-blur-md border border-white/20 shadow-md;
   }
 
   .text-balance {
@@ -136,6 +136,21 @@
   .destructive-border {
     @apply border-2 border-destructive;
   }
+  
+  /* New minimalistic card styles */
+  .minimal-card {
+    @apply bg-white rounded-xl shadow-sm border border-border p-6 transition-all duration-300 hover:shadow-md;
+  }
+  
+  /* Animation utilities */
+  .animate-sequential {
+    animation-fill-mode: both;
+    opacity: 0;
+  }
+  
+  .animate-sequential.visible {
+    animation: fadeInUp 0.5s ease forwards;
+  }
 }
 
 .animate-delay-100 {
@@ -156,6 +171,17 @@
 
 .animate-delay-500 {
   animation-delay: 500ms;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Keep scrollbar visible on Windows/Linux but subtle */

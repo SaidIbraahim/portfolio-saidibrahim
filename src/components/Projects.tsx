@@ -40,19 +40,23 @@ const projectsData: ProjectProps[] = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 px-6 bg-gradient-to-b from-background to-blue/5">
+    <section id="projects" className="py-24 px-6 bg-gradient-to-b from-background to-secondary/30">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <AnimatedText 
-            text="My Projects" 
             className="section-title"
             once={true}
-          />
+            delay={0}
+          >
+            My Projects
+          </AnimatedText>
           <AnimatedText 
-            text="A selection of my recent work and creative endeavors"
             className="text-xl text-muted-foreground max-w-2xl mx-auto mt-4"
             once={true}
-          />
+            delay={200}
+          >
+            A selection of my recent work and creative endeavors
+          </AnimatedText>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -61,6 +65,7 @@ const Projects = () => {
               key={index}
               className="h-full"
               once={true}
+              delay={300 + index * 100}
             >
               <ProjectCard {...project} />
             </AnimatedText>
@@ -71,9 +76,10 @@ const Projects = () => {
           <AnimatedText 
             className=""
             once={true}
+            delay={800}
           >
             <a href="https://projects.saidibrahim.tech" target="_blank" rel="noopener noreferrer">
-              <Button className="rounded-full px-6 py-6 bg-blue hover:bg-blue/90 text-white">
+              <Button className="rounded-full px-6 py-6 bg-cvs-blue hover:bg-cvs-blue/90 text-white">
                 View All Projects
               </Button>
             </a>
