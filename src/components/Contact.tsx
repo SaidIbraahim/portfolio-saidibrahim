@@ -66,7 +66,7 @@ const Contact = () => {
                     <Github className="w-6 h-6" />
                   </a>
                   <a
-                    href="https://linkedin.com/in/saidibrahim"
+                    href="https://www.linkedin.com/in/sa-ibrahim"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-primary transition-colors"
