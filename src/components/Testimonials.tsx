@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { Quote, ChevronLeft, ChevronRight, Star, User } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { Button } from '../components/ui/button';
+
+// Fallback default image in case Unsplash images fail to load
+const DEFAULT_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%23cbd5e0' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='12' cy='7' r='4'%3E%3C/circle%3E%3C/svg%3E";
 
 const testimonials = [
   {
@@ -37,10 +40,15 @@ const testimonials = [
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const handleImageError = (index: number) => {
+    setImageErrors(prev => ({ ...prev, [index]: true }));
+  };
 
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
@@ -76,66 +84,72 @@ const Testimonials = () => {
           animate="center"
           exit="exit"
           transition={{ type: "tween", duration: 0.5 }}
-          className="bg-white p-8 rounded-xl shadow-md border border-border/40 relative"
+          className="bg-white p-5 pt-8 sm:p-8 rounded-xl shadow-md border border-border/40 relative mx-auto max-w-[90%] sm:max-w-[85%]"
         >
-          {/* Navigation buttons positioned at the sides but inside the container */}
+          {/* Navigation buttons positioned at the sides */}
           <Button
             variant="outline"
             size="icon"
             onClick={prevTestimonial}
-            className="absolute left-2 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/95 border-blue-primary/30 shadow-md text-blue-primary hover:bg-blue-primary hover:text-white z-10"
+            className="absolute left-0 sm:left-2 top-1/2 -translate-x-1/2 sm:-translate-x-1/4 -translate-y-1/2 h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-white shadow-md text-blue-primary hover:bg-blue-primary hover:text-white z-10"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
           
           <Button
             variant="outline" 
             size="icon"
             onClick={nextTestimonial}
-            className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/95 border-blue-primary/30 shadow-md text-blue-primary hover:bg-blue-primary hover:text-white z-10"
+            className="absolute right-0 sm:right-2 top-1/2 translate-x-1/2 sm:translate-x-1/4 -translate-y-1/2 h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-white shadow-md text-blue-primary hover:bg-blue-primary hover:text-white z-10"
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
 
-          <div className="mb-6">
+          <div className="mb-4 flex justify-center">
             {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-              <Star key={i} className="inline-block w-5 h-5 fill-accent text-accent mr-1" />
+              <Star key={i} className="inline-block w-4 h-4 sm:w-5 sm:h-5 fill-accent text-accent mr-1" />
             ))}
           </div>
           
-          <div className="relative mb-8">
-            <Quote className="absolute -top-3 -left-2 text-blue-primary/20 w-10 h-10 rotate-180" />
-            <p className="text-dark/80 italic pl-6 relative text-lg">
+          <div className="relative mb-6">
+            <Quote className="absolute -top-3 -left-2 text-blue-primary/20 w-8 h-8 sm:w-10 sm:h-10 rotate-180" />
+            <p className="text-dark/80 italic pl-5 text-sm sm:text-base sm:pl-6 relative leading-relaxed">
               "{testimonials[currentIndex].quote}"
             </p>
           </div>
           
-          <div className="flex items-center">
-            <div className="w-14 h-14 rounded-full border-2 border-blue-primary/30 overflow-hidden mr-4">
-              <img
-                src={testimonials[currentIndex].image}
-                alt={testimonials[currentIndex].author}
-                className="w-full h-full object-cover"
-              />
+          <div className="flex items-center justify-center sm:justify-start">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-blue-primary/30 overflow-hidden mr-3 sm:mr-4 bg-gray-50 flex items-center justify-center">
+              {imageErrors[currentIndex] ? (
+                <User className="w-6 h-6 text-gray-300" />
+              ) : (
+                <img
+                  src={testimonials[currentIndex].image}
+                  alt={testimonials[currentIndex].author}
+                  className="w-full h-full object-cover"
+                  onError={() => handleImageError(currentIndex)}
+                  loading="lazy"
+                />
+              )}
             </div>
             <div>
               <h4 className="font-bold text-dark">{testimonials[currentIndex].author}</h4>
-              <p className="text-dark/60 text-sm">{testimonials[currentIndex].role}</p>
+              <p className="text-dark/60 text-xs sm:text-sm">{testimonials[currentIndex].role}</p>
             </div>
           </div>
         </motion.div>
       </AnimatePresence>
 
       {/* Indicators for mobile */}
-      <div className="flex justify-center gap-2 mt-6">
+      <div className="flex justify-center gap-2 mt-8">
         {testimonials.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "w-7 bg-blue-primary" : "w-2.5 bg-blue-primary/30"
+            className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${
+              index === currentIndex ? "w-6 sm:w-7 bg-blue-primary" : "w-2 sm:w-2.5 bg-blue-primary/30"
             }`}
             aria-label={`Go to testimonial ${index + 1}`}
           />
@@ -186,12 +200,18 @@ const Testimonials = () => {
                 </div>
                 
                 <div className="flex items-center">
-                  <div className="w-14 h-14 rounded-full border-2 border-blue-primary/30 overflow-hidden mr-4">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.author}
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="w-14 h-14 rounded-full border-2 border-blue-primary/30 overflow-hidden mr-4 bg-gray-50 flex items-center justify-center">
+                    {imageErrors[index] ? (
+                      <User className="w-7 h-7 text-gray-300" />
+                    ) : (
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.author}
+                        className="w-full h-full object-cover"
+                        onError={() => handleImageError(index)}
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                   <div>
                     <h4 className="font-bold text-dark">{testimonial.author}</h4>
@@ -243,17 +263,17 @@ const Testimonials = () => {
     <section 
       id="testimonials"
       ref={ref}
-      className="py-24 relative overflow-hidden bg-gradient-to-b from-light to-white"
+      className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-b from-light to-white"
     >
       {/* Background decorative elements */}
       <motion.div 
-        className="absolute top-40 right-20 w-64 h-64 rounded-full bg-blue-primary/5 -z-10"
+        className="absolute top-40 right-10 sm:right-20 w-40 sm:w-64 h-40 sm:h-64 rounded-full bg-blue-primary/5 -z-10"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={inView ? { opacity: 0.7, scale: 1 } : { opacity: 0, scale: 0.8 }}
         transition={{ duration: 1 }}
       />
       <motion.div 
-        className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-accent/5 -z-10"
+        className="absolute bottom-40 left-10 sm:left-20 w-40 sm:w-80 h-40 sm:h-80 rounded-full bg-accent/5 -z-10"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={inView ? { opacity: 0.6, scale: 1 } : { opacity: 0, scale: 0.8 }}
         transition={{ duration: 1, delay: 0.3 }}
@@ -264,20 +284,20 @@ const Testimonials = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7 }}
-          className="text-center max-w-xl mx-auto mb-16"
+          className="text-center max-w-xl mx-auto mb-10 sm:mb-16"
         >
           <div className="inline-block">
-            <span className="bg-blue-primary/10 text-blue-primary text-sm font-medium px-4 py-1.5 rounded-full inline-block mb-4">TESTIMONIALS</span>
+            <span className="bg-blue-primary/10 text-blue-primary text-xs sm:text-sm font-medium px-3 sm:px-4 py-1 sm:py-1.5 rounded-full inline-block mb-3 sm:mb-4">TESTIMONIALS</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-dark">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-dark">
             Client <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-primary to-accent">Feedback</span>
           </h2>
-          <p className="text-dark/80">
+          <p className="text-dark/80 text-sm sm:text-base">
             What my clients have to say about my work and collaboration
           </p>
         </motion.div>
 
-        <div className="relative h-[350px] md:h-[420px] mb-8">
+        <div className="relative h-[380px] sm:h-[400px] md:h-[420px] mb-8">
           {renderMobileView()}
           {renderDesktopView()}
         </div>
