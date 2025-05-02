@@ -9,28 +9,28 @@ const testimonials = [
     quote: "Said's ability to transform complex requirements into intuitive user experiences is remarkable. He consistently delivered beyond our expectations and brought innovative solutions to our technical challenges.",
     author: "Sarah Chen",
     role: "CTO, TechVision Inc.",
-    image: "/testimonial-1.jpg",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
     rating: 5
   },
   {
     quote: "Working with Said was a game-changer for our startup. His technical expertise and design-thinking approach helped us launch a product our users love. His AI integration skills gave us a competitive edge.",
     author: "Michael Rodriguez",
     role: "Founder, InnovateLab",
-    image: "/testimonial-2.jpg",
+    image: "https://images.unsplash.com/photo-1556157382-97eda2f9e1de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
     rating: 5
   },
   {
     quote: "The attention to detail and commitment to quality in both development and design sets Said apart. A true professional who delivers excellence and understands the balance between aesthetics and functionality.",
     author: "Emily Thompson",
     role: "Product Manager, DesignFlow",
-    image: "/testimonial-3.jpg",
+    image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
     rating: 5
   },
   {
     quote: "Said's work on our web application exceeded all expectations. His ability to understand complex business requirements and translate them into beautiful, functional interfaces is extraordinary.",
     author: "David Wilson",
     role: "CEO, TechSolutions",
-    image: "/testimonial-4.jpg",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
     rating: 5
   }
 ];
