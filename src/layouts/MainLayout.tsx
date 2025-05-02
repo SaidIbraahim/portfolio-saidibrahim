@@ -18,21 +18,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 }) => {
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://saidibrahim.com" />
-        <meta property="og:image" content="/og-image.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content="/og-image.png" />
-        <meta name="keywords" content="Software Developer in Somalia, UX Designer Portfolio, Best Developer Portfolio Website, Fullstack Developer Portfolio 2025" />
-      </Helmet>
-
       <div className="flex flex-col min-h-screen">
         <Header />
         
