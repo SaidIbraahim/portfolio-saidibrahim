@@ -6,10 +6,12 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetClose
 } from '../components/ui/sheet';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -69,36 +71,64 @@ const Header = () => {
         </nav>
 
         {/* Mobile Navigation */}
-        <Sheet>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden text-dark"
-              aria-label="Open Menu"
+              className="md:hidden text-dark hover:text-blue-primary hover:bg-blue-50 transition-all"
+              aria-label={isOpen ? "Close Menu" : "Open Menu"}
             >
-              <Menu className="h-6 w-6" />
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={isOpen ? "open" : "closed"}
+                  initial={{ opacity: 0, rotate: isOpen ? -90 : 90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: isOpen ? 90 : -90 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                </motion.div>
+              </AnimatePresence>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-light">
-            <nav className="flex flex-col mt-10 space-y-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-xl font-medium text-dark hover:text-blue-primary transition-colors"
-                  onClick={() => {
-                    const element = document.querySelector('[data-radix-collection-item]');
-                    if (element) {
-                      const htmlElement = element as HTMLElement;
-                      htmlElement.click();
-                    }
-                  }}
+          <SheetContent 
+            side="right" 
+            className="w-[80%] max-w-[350px] bg-light p-0 border-l border-gray-100 shadow-xl"
+          >
+            <div className="flex flex-col h-full">
+              <div className="py-6 px-6 border-b border-gray-100">
+                <div className="font-bold text-2xl text-dark">
+                  Said<span className="text-blue-primary">.</span>
+                </div>
+              </div>
+              
+              <nav className="flex flex-col py-8 px-6 space-y-6 flex-grow">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    className="text-xl font-medium text-dark hover:text-blue-primary transition-colors"
+                    onClick={() => setIsOpen(false)}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+              </nav>
+              
+              <div className="mt-auto border-t border-gray-100 py-6 px-6">
+                <a 
+                  href="#contact" 
+                  onClick={() => setIsOpen(false)}
+                  className="block w-full py-3 px-4 bg-blue-primary text-white font-medium rounded-md text-center hover:bg-blue-600 transition-colors"
                 >
-                  {item.name}
+                  Contact Me
                 </a>
-              ))}
-            </nav>
+              </div>
+            </div>
           </SheetContent>
         </Sheet>
       </div>
