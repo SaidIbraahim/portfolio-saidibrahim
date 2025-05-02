@@ -76,8 +76,29 @@ const Testimonials = () => {
           animate="center"
           exit="exit"
           transition={{ type: "tween", duration: 0.5 }}
-          className="bg-white p-8 rounded-xl shadow-md border border-border/40"
+          className="bg-white p-8 rounded-xl shadow-md border border-border/40 relative"
         >
+          {/* Navigation buttons positioned at the sides but inside the container */}
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={prevTestimonial}
+            className="absolute left-2 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/95 border-blue-primary/30 shadow-md text-blue-primary hover:bg-blue-primary hover:text-white z-10"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
+          
+          <Button
+            variant="outline" 
+            size="icon"
+            onClick={nextTestimonial}
+            className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/95 border-blue-primary/30 shadow-md text-blue-primary hover:bg-blue-primary hover:text-white z-10"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </Button>
+
           <div className="mb-6">
             {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
               <Star key={i} className="inline-block w-5 h-5 fill-accent text-accent mr-1" />
@@ -107,23 +128,18 @@ const Testimonials = () => {
         </motion.div>
       </AnimatePresence>
 
-      <div className="flex justify-center gap-3 mt-8">
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={prevTestimonial}
-          className="h-10 w-10 rounded-full border-border text-dark hover:bg-blue-primary hover:text-white"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Button>
-        <Button
-          variant="outline" 
-          size="icon"
-          onClick={nextTestimonial}
-          className="h-10 w-10 rounded-full border-border text-dark hover:bg-blue-primary hover:text-white"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </Button>
+      {/* Indicators for mobile */}
+      <div className="flex justify-center gap-2 mt-6">
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`h-2.5 rounded-full transition-all duration-300 ${
+              index === currentIndex ? "w-7 bg-blue-primary" : "w-2.5 bg-blue-primary/30"
+            }`}
+            aria-label={`Go to testimonial ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
