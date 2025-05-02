@@ -1,7 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Cpu, Globe, Paintbrush, Code, Database, LineChart, Layers, Star } from 'lucide-react';
+import { 
+  Cpu, 
+  Paintbrush, 
+  Code, 
+  Database, 
+  Server, 
+  BookOpen, 
+  Workflow,
+  Bot
+} from 'lucide-react';
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -30,95 +39,99 @@ const Skills = () => {
     },
   };
 
-  // Skill levels with descriptions
-  const skillLevels = {
-    expert: {
-      label: "Expert",
-      description: "Mastery level with deep understanding. Can architect complex solutions and mentor others.",
-      color: "from-blue-primary to-accent",
-      nodes: 5
-    },
-    advanced: {
-      label: "Advanced",
-      description: "Strong proficiency with comprehensive knowledge and significant experience.",
-      color: "from-blue-primary to-blue-primary/60",
-      nodes: 4
-    },
-    proficient: {
-      label: "Proficient",
-      description: "Competent with solid working knowledge and practical application experience.",
-      color: "from-blue-primary/80 to-blue-primary/40",
-      nodes: 3
-    },
-    intermediate: {
-      label: "Intermediate",
-      description: "Working knowledge with some practical application experience.",
-      color: "from-blue-primary/60 to-blue-primary/20",
-      nodes: 2
-    }
-  };
-
-  // Enhanced skill categories with skill levels instead of percentages
+  // Enhanced skill categories with modern organization
   const skillCategories = [
     {
       title: 'Frontend Development',
       icon: <Code className="w-6 h-6" />,
       skills: [
-        { name: 'React / React Native', level: 'expert' },
-        { name: 'TypeScript / JavaScript', level: 'expert' },
-        { name: 'Next.js', level: 'advanced' },
-        { name: 'Tailwind CSS / SCSS', level: 'expert' }
+        'React & React Native',
+        'Next.js',
+        'TypeScript/JavaScript',
+        'HTML5/CSS3',
+        'Tailwind CSS & SCSS',
+        'Redux & Context API',
+        'Framer Motion'
       ]
     },
     {
-      title: 'Backend Development',
-      icon: <Database className="w-6 h-6" />,
+      title: 'Backend & Infrastructure',
+      icon: <Server className="w-6 h-6" />,
       skills: [
-        { name: 'Node.js / Express', level: 'advanced' },
-        { name: 'Python / Django', level: 'proficient' },
-        { name: 'RESTful APIs', level: 'expert' },
-        { name: 'GraphQL', level: 'intermediate' }
+        'Node.js & Express',
+        'Python & Django',
+        'REST API Development',
+        'GraphQL',
+        'MongoDB & SQL Databases',
+        'Firebase',
+        'AWS Services'
       ]
     },
     {
       title: 'Design & UX',
       icon: <Paintbrush className="w-6 h-6" />,
       skills: [
-        { name: 'Figma / Adobe XD', level: 'expert' },
-        { name: 'UI/UX Design', level: 'expert' },
-        { name: 'Design Systems', level: 'advanced' },
-        { name: 'User Research', level: 'proficient' }
+        'Figma & Adobe XD',
+        'UI/UX Design',
+        'Wireframing & Prototyping',
+        'Design Systems',
+        'User Research',
+        'Accessibility',
+        'Responsive Design'
       ]
     },
     {
       title: 'AI & Emerging Tech',
       icon: <Cpu className="w-6 h-6" />,
       skills: [
-        { name: 'AI Integration', level: 'advanced' },
-        { name: 'ChatGPT / LLMs', level: 'advanced' },
-        { name: 'Machine Learning Basics', level: 'intermediate' },
-        { name: 'Voice Interfaces', level: 'intermediate' },
+        'AI Integration',
+        'ChatGPT & LLMs',
+        'Voice Interfaces',
+        'Machine Learning',
+        'Automation'
       ]
     }
   ];
 
-  // Technology logos/icons
-  const technologies = [
-    'react', 'typescript', 'nodejs', 'python', 'figma', 
-    'tailwind', 'nextjs', 'mongodb', 'firebase', 'aws'
+  // Tools & technologies with logos
+  const tools = [
+    {
+      category: 'Development',
+      icon: <Code className="w-5 h-5" />,
+      items: [
+        'React', 'TypeScript', 'Next.js', 'Node.js', 'Python', 
+        'Django', 'Git', 'REST APIs', 'GraphQL'
+      ]
+    },
+    {
+      category: 'Design',
+      icon: <Paintbrush className="w-5 h-5" />,
+      items: [
+        'Figma', 'Adobe XD', 'Sketch', 'Photoshop', 'Illustrator'
+      ]
+    },
+    {
+      category: 'Databases & Infrastructure',
+      icon: <Database className="w-5 h-5" />,
+      items: [
+        'MongoDB', 'PostgreSQL', 'Firebase', 'AWS', 'Vercel', 'Netlify'
+      ]
+    },
+    {
+      category: 'Project Management',
+      icon: <Workflow className="w-5 h-5" />,
+      items: [
+        'Agile', 'Scrum', 'JIRA', 'GitHub Projects', 'Notion'
+      ]
+    },
+    {
+      category: 'AI & Automation',
+      icon: <Bot className="w-5 h-5" />,
+      items: [
+        'OpenAI API', 'HuggingFace', 'TensorFlow', 'Chatbots', 'Automation Tools'
+      ]
+    }
   ];
-
-  // Custom Skill Node component
-  const SkillNode = ({ active, color }: { active: boolean; color: string }) => (
-    <motion.div 
-      className={`h-3 w-3 rounded-full ${active 
-        ? `bg-gradient-to-r ${color} shadow-sm` 
-        : 'bg-light border border-border/40'}`}
-      initial={{ scale: 0 }}
-      animate={{ scale: active ? 1 : 0.7 }}
-      transition={{ duration: 0.3 }}
-    />
-  );
 
   return (
     <section 
@@ -151,52 +164,25 @@ const Skills = () => {
             <span className="bg-blue-primary/10 text-blue-primary text-sm font-medium px-4 py-1.5 rounded-full inline-block mb-4">SKILLS & EXPERTISE</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-dark">
-            Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-primary to-accent">Proficiency</span>
+            Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-primary to-accent">Expertise</span>
           </h2>
           <p className="text-dark/80">
-            A comprehensive look at my technical skillset and areas of expertise
+            My professional competencies and technical toolkit
           </p>
         </motion.div>
 
-        {/* Skill Level Legend */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-16"
-        >
-          {Object.entries(skillLevels).map(([key, level], idx) => (
-            <div 
-              key={key}
-              className="flex flex-col items-center bg-white p-4 rounded-lg shadow-sm border border-border/40 w-[160px]"
-            >
-              <div className="flex space-x-1 mb-2">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <SkillNode 
-                    key={i} 
-                    active={i < level.nodes} 
-                    color={level.color} 
-                  />
-                ))}
-              </div>
-              <span className="font-semibold text-dark">{level.label}</span>
-              <p className="text-xs text-dark/60 text-center mt-1">{level.description}</p>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Skills Cards */}
+        {/* Professional Areas */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto mb-20"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20"
         >
-          {skillCategories.map((category, idx) => (
+          {skillCategories.map((category) => (
             <motion.div 
               key={category.title} 
               variants={itemVariants}
-              className="bg-white rounded-xl shadow-md p-8 border border-border/40 hover:border-blue-primary/30 transition-all"
+              className="bg-white rounded-xl shadow-md p-8 border border-border/40 hover:shadow-lg transition-all duration-300"
             >
               <div className="flex items-center mb-6">
                 <div className="p-3 bg-blue-primary/10 text-blue-primary rounded-lg mr-4">
@@ -205,65 +191,52 @@ const Skills = () => {
                 <h3 className="text-xl font-bold text-dark">{category.title}</h3>
               </div>
 
-              <div className="space-y-6">
-                {category.skills.map((skill) => {
-                  const level = skillLevels[skill.level as keyof typeof skillLevels];
-                  
-                  return (
-                    <div key={skill.name} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="font-medium text-dark">{skill.name}</span>
-                        <span className="text-sm font-medium text-blue-primary/90 bg-blue-primary/5 px-2 py-0.5 rounded-full">
-                          {level.label}
-                        </span>
-                      </div>
-                      <div className="flex space-x-2">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                          <motion.div
-                            key={i}
-                            className="flex-1"
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.3, delay: 0.5 + (i * 0.1) }}
-                          >
-                            <div className={`h-1.5 rounded-full ${i < level.nodes 
-                              ? `bg-gradient-to-r ${level.color}` 
-                              : 'bg-light border border-border/40'}`} 
-                            />
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill) => (
+                  <span 
+                    key={skill} 
+                    className="inline-block px-3 py-1.5 bg-light rounded-md text-dark/80 text-sm border border-border/30 hover:border-blue-primary/40 hover:bg-blue-primary/5 transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Technologies */}
+        {/* Tools & Technologies */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="max-w-5xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="max-w-5xl mx-auto bg-white rounded-xl shadow-md p-8 border border-border/40"
         >
-          <h3 className="text-xl font-bold text-center mb-10 text-dark">Technologies I Work With</h3>
+          <h3 className="text-2xl font-bold text-dark mb-8 text-center">Tools & Technologies</h3>
           
-          <div className="flex flex-wrap justify-center gap-10 items-center">
-            {technologies.map((tech, idx) => (
-              <motion.div
-                key={tech}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="flex flex-col items-center"
-              >
-                <div className="w-16 h-16 p-3 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                  <div className="w-10 h-10 bg-blue-primary/10 rounded-lg"></div>
+          <div className="space-y-8">
+            {tools.map((toolCategory) => (
+              <div key={toolCategory.category}>
+                <div className="flex items-center mb-4">
+                  <div className="p-2 bg-blue-primary/10 text-blue-primary rounded-md mr-3">
+                    {toolCategory.icon}
+                  </div>
+                  <h4 className="text-lg font-semibold text-dark">{toolCategory.category}</h4>
                 </div>
-                <span className="mt-2 text-sm font-medium text-dark/80 capitalize">{tech}</span>
-              </motion.div>
+                
+                <div className="flex flex-wrap gap-2 ml-2">
+                  {toolCategory.items.map((item) => (
+                    <motion.span 
+                      key={item}
+                      className="inline-block px-3 py-1.5 bg-gradient-to-r from-blue-primary/10 to-accent/5 rounded-full text-dark/90 text-sm border border-blue-primary/20"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      {item}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </motion.div>
