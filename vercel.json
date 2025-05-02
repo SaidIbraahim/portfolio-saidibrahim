@@ -16,7 +16,12 @@
       "src": "/",
       "status": 301,
       "headers": { "Location": "https://portfolio.saidibrahim.tech" },
-      "continue": true
+      "has": [
+        {
+          "type": "host",
+          "value": "saidibrahim.tech"
+        }
+      ]
     },
     {
       "src": "/(.*)",
