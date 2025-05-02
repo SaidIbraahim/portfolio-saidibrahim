@@ -2,9 +2,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "redirects": [
-    {
-      "source": "/",
-      "destination": "https://portfolio.saidibrahim.tech",
+    { 
+      "source": "/(.*)", 
+      "destination": "https://portfolio.saidibrahim.tech/$1",
       "permanent": true
     }
   ],
