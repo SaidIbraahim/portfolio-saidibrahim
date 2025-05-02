@@ -9,9 +9,14 @@
   ],
   "routes": [
     {
+      "src": "/preview-test",
+      "dest": "/index.html"
+    },
+    {
       "src": "/",
       "status": 301,
-      "headers": { "Location": "https://portfolio.saidibrahim.tech" }
+      "headers": { "Location": "https://portfolio.saidibrahim.tech" },
+      "continue": true
     },
     {
       "src": "/(.*)",
