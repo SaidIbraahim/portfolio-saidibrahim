@@ -1,16 +1,15 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "redirects": [
     { 
       "source": "/(.*)", 
       "destination": "https://portfolio.saidibrahim.tech/$1",
       "permanent": true
     }
-  ],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
   ],
   "headers": [
     {
