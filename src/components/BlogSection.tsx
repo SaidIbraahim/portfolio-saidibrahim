@@ -25,7 +25,7 @@ const BlogSection = () => {
       description: 'Exploring how artificial intelligence is transforming the way we build and interact with web applications.',
       date: 'May 15, 2023',
       category: 'AI & Tech',
-      image: '/blog-1.jpg',
+      image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
       url: '/blog/ai-in-web-development',
     },
     {
@@ -34,7 +34,7 @@ const BlogSection = () => {
       description: 'How AI is reshaping user experience design and what designers need to know to stay relevant in this new era.',
       date: 'June 10, 2023',
       category: 'UX & AI',
-      image: '/blog-2.jpg',
+      image: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
       url: '/blog/ux-design-ai-assistance',
     },
     {
@@ -43,7 +43,7 @@ const BlogSection = () => {
       description: 'Practical approaches for developing AI-driven applications that are both powerful and ethically responsible.',
       date: 'July 22, 2023',
       category: 'AI Ethics',
-      image: '/blog-3.jpg',
+      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
       url: '/blog/ethical-ai-development',
     },
   ];
@@ -97,9 +97,11 @@ const BlogSection = () => {
             <motion.div key={post.id} variants={itemVariants}>
               <Card className="h-full flex flex-col overflow-hidden border border-border/40 hover:border-blue-primary/30 transition-all duration-300 group hover:shadow-md">
                 <div className="relative overflow-hidden aspect-video">
-                  <div className="bg-blue-primary/20 absolute inset-0 flex items-center justify-center">
-                    <span className="text-blue-primary/70 text-sm font-medium">Image Placeholder</span>
-                  </div>
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <CardHeader className="p-6">
                   <div className="flex items-center justify-between mb-2">
