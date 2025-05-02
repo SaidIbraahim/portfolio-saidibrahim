@@ -6,12 +6,21 @@ import AIimg from '../assets/images/AIimg.jpg';
 
 const projects = [
   {
-    title: 'Online Student Council Voting platform',
-    description: 'a comprehensive Online Student Council Voting platform designed to facilitate secure and efficient student council elections.',
+    title: 'Online Student Council Voting System',
+    description: 'A comprehensive platform designed to facilitate secure and efficient student council elections, featuring user authentication, voter registration, election management, and real-time voting.',
     image: voteimg,
-    tech: ['React', 'Tailwind CSS', 'MongoDB', 'Node.js'],
-    liveUrl: 'https://github.com/SaidIbraahim/online-student-council-voting-system',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB'],
+    liveUrl: '#',
     githubUrl: 'https://github.com/SaidIbraahim/online-student-council-voting-system',
+    type: 'development'
+  },
+  {
+    title: 'AI-Powered Chatbot',
+    description: 'Interactive Chatbot web application that uses the Meta-Llama-3-70B API to provide fast and accurate responses to a wide range of text prompts.',
+    image: AIimg,
+    tech: ['JavaScript', 'Node.js', 'Express', 'Meta-Llama-3-70B API'],
+    liveUrl: 'https://turbotide-chatbot.onrender.com/',
+    githubUrl: 'https://github.com/SaidIbraahim/AI-Powered-Chatbot',
     type: 'development'
   },
   {
@@ -22,15 +31,6 @@ const projects = [
     liveUrl: 'https://projects.saidibrahim.tech/healthtrack-ux',
     figmaUrl: 'https://figma.com/file/healthtrack',
     type: 'design'
-  },
-  {
-    title: 'AI-powered Chatbot',
-    description: 'Interactive Chatbot web application that uses the Meta-Llama-3-70B API to provide fast and accurate responses to a wide range of text prompts.',
-    image: AIimg,
-    tech: ['JavaScript', 'OpenAI API', 'CSS', 'HTML'],
-    liveUrl: 'https://turbotide-chatbot.onrender.com/',
-    githubUrl: 'https://github.com/SaidIbraahim/AI-Powered-Chatbot',
-    type: 'development'
   },
   {
     title: 'FinTech App Redesign',

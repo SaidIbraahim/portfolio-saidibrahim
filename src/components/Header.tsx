@@ -1,85 +1,107 @@
-import React, { useState } from 'react';
-import { Menu, Github, Linkedin, Instagram } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { Button } from '../components/ui/button';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from '../components/ui/sheet';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
 
-  const navigation = [
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
+
+  const navItems = [
+    { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },
     { name: 'Testimonials', href: '#testimonials' },
+    { name: 'Blog', href: '#blog' },
     { name: 'Contact', href: '#contact' },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm">
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <a href="#" className="text-2xl font-bold text-secondary">SI</a>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-gray-600 hover:text-primary transition-colors"
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-light/95 backdrop-blur-sm shadow-md py-3'
+          : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="container flex items-center justify-between">
+        <motion.a
+          href="#hero"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="font-bold text-2xl text-dark"
+        >
+          Said<span className="text-blue-primary">.</span>
+        </motion.a>
 
-          {/* Social Links */}
-          <div className="hidden md:flex items-center space-x-4">
-            <a href="https://github.com/SaidIbraahim/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
-              <Github size={20} />
-            </a>
-            <a href="https://www.linkedin.com/in/sa-ibrahim" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
-              <Linkedin size={20} />
-            </a>
-            <a href="https://www.instagram.com/saeedibrahim.tech/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
-              <Instagram size={20} />
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-600"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          {navItems.map((item, index) => (
+            <motion.a
+              key={item.name}
+              href={item.href}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              className="text-dark hover:text-blue-primary font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-blue-primary after:transition-all hover:after:w-full"
+            >
+              {item.name}
+            </motion.a>
+          ))}
+        </nav>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block py-2 text-gray-600 hover:text-primary"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
-            <div className="flex space-x-4 py-4">
-              <a href="https://github.com/SaidIbraahim/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
-                <Github size={20} />
-              </a>
-              <a href="https://www.linkedin.com/in/sa-ibrahim" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
-                <Linkedin size={20} />
-              </a>
-              <a href="https://www.instagram.com/saeedibrahim.tech/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
-                <Instagram size={20} />
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden text-dark"
+              aria-label="Open Menu"
+            >
+              <Menu className="h-6 w-6" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-light">
+            <nav className="flex flex-col mt-10 space-y-6">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-xl font-medium text-dark hover:text-blue-primary transition-colors"
+                  onClick={() => {
+                    const element = document.querySelector('[data-radix-collection-item]');
+                    if (element) {
+                      const htmlElement = element as HTMLElement;
+                      htmlElement.click();
+                    }
+                  }}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
+      </div>
     </header>
   );
 };
