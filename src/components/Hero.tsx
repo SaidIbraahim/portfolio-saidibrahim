@@ -188,7 +188,7 @@ const Hero = () => {
               transition={{ delay: 0.7 }}
             >
               From automation to custom platforms — everything is built to save time, cut manual work, and just work.<br />
-              <span className="text-dark/60 text-base block mt-3">(I also do UX/UI design)</span>
+             
             </motion.p>
 
             <motion.div
