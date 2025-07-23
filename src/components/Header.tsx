@@ -148,7 +148,7 @@ const Header = () => {
                   <Sparkles className="w-5 h-5 text-accent ml-2" />
                 </div>
                 <p className="text-sm text-dark/70 mt-2">
-                  Software Developer & UX Designer
+                  Software & AI Solutions Developer
                 </p>
               </div>
               

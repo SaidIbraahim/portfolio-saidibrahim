@@ -34,7 +34,7 @@ const Footer = () => {
     { 
       icon: <MapPin className="h-5 w-5 text-purple-primary" />, 
       text: 'Garowe, Somalia',
-      href: 'https://goo.gl/maps/garowe',
+      href: 'https://www.google.com/maps/@8.4044407,48.4707397,13.69z?entry=ttu&g_ep=EgoyMDI1MDcyMS4wIKXMDSoASAFQAw%3D%3D',
     },
     { 
       icon: <Mail className="h-5 w-5 text-purple-primary" />, 

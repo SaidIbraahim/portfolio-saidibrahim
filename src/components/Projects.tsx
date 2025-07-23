@@ -36,7 +36,7 @@ const projects = [
   {
     title: 'Alumni Management System',
     description: 'Advanced system for universities to manage graduate records, transcripts, and certificates while maintaining connection with alumni community.',
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9d1?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=800&q=80', // updated to a professional group/education image
     tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'PDF Generation', 'Email Integration'],
     liveUrl: 'https://eau-admin.vercel.app/login',
     githubUrl: 'https://github.com/SaidIbraahim/alumni-management',
@@ -84,7 +84,20 @@ const projects = [
     icon: <Zap className="h-6 w-6" />,
     gradient: 'from-amber-500 to-orange-500',
     featured: false
-  }
+  },
+  {
+    title: 'HRMS - Human Resource Management System',
+    description: 'Comprehensive HRMS platform for managing employees, attendance, payroll, HR documents, assets, and more. Built for modern organizations to streamline HR operations.',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Payroll', 'Attendance', 'HR Docs', 'Asset Management'],
+    liveUrl: 'https://hrms.saidibrahim.tech/',
+    githubUrl: '',
+    type: 'development',
+    category: 'Business',
+    icon: <Users className="h-6 w-6" />,
+    gradient: 'from-indigo-500 to-blue-500',
+    featured: false
+  },
 ];
 
 const Projects = () => {

@@ -87,21 +87,21 @@ const About = () => {
   const achievements = [
     {
       icon: <Award className="w-6 w-6" />,
-      number: "70+",
+      number: "25+",
       label: "Projects Delivered",
       description: "Successfully completed projects across diverse industries"
     },
     {
       icon: <Users className="w-6 w-6" />,
-      number: "50+",
+      number: "20+",
       label: "Happy Clients",
       description: "Satisfied clients from startups to enterprises"
     },
     {
       icon: <TrendingUp className="w-6 w-6" />,
-      number: "4+",
+      number: "5",
       label: "Years Experience",
-      description: "Continuous growth in technology and design"
+      description: "Continuous growth in technology and AI solutions"
     }
   ];
 

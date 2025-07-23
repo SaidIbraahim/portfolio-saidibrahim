@@ -45,20 +45,20 @@ const Hero = () => {
 
   const heroStats = [
     {
-      value: "4+",
+      value: "5",
       label: "Years Experience",
       icon: <User className="h-6 w-6 text-purple-primary" />,
       gradient: "from-purple-primary to-accent"
     },
     {
-      value: "70+",
+      value: "25+",
       label: "Projects Completed",
       icon: <Code className="h-6 w-6 text-purple-primary" />,
       gradient: "from-accent to-purple-primary"
     },
     {
-      value: "15+",
-      label: "Design Systems",
+      value: "10+",
+      label: "System Design",
       icon: <LayoutGrid className="h-6 w-6 text-purple-primary" />,
       gradient: "from-purple-primary via-accent to-purple-primary"
     },
