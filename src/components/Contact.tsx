@@ -200,7 +200,7 @@ const Contact = () => {
           <p className="text-xl text-dark/80 leading-relaxed max-w-3xl mx-auto">
             I build smart web software and AI tools that solve real business problems.<br />
             From automation to custom platforms — everything is built to save time, cut manual work, and just work.<br />
-            <span className="text-dark/60 text-base block mt-3">(I do a bit of UX/UI design here and there.)</span>
+           
           </p>
         </motion.div>
 
