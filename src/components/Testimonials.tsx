@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote, ChevronLeft, ChevronRight, Star, User } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
@@ -13,30 +13,54 @@ const testimonials = [
     author: "Sarah Chen",
     role: "CTO, TechVision Inc.",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
-    rating: 5
+    rating: 5,
+    company: "TechVision Inc.",
+    project: "Enterprise Dashboard Redesign",
+    result: "40% increase in user engagement"
   },
   {
     quote: "Working with Said was a game-changer for our startup. His technical expertise and design-thinking approach helped us launch a product our users love. His AI integration skills gave us a competitive edge.",
     author: "Michael Rodriguez",
     role: "Founder, InnovateLab",
     image: "https://images.unsplash.com/photo-1556157382-97eda2f9e1de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
-    rating: 5
+    rating: 5,
+    company: "InnovateLab",
+    project: "AI-Powered Analytics Platform",
+    result: "300% faster data processing"
   },
   {
     quote: "The attention to detail and commitment to quality in both development and design sets Said apart. A true professional who delivers excellence and understands the balance between aesthetics and functionality.",
     author: "Emily Thompson",
     role: "Product Manager, DesignFlow",
     image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
-    rating: 5
+    rating: 5,
+    company: "DesignFlow",
+    project: "Design System Implementation",
+    result: "60% faster development cycles"
   },
   {
     quote: "Said's work on our web application exceeded all expectations. His ability to understand complex business requirements and translate them into beautiful, functional interfaces is extraordinary.",
     author: "David Wilson",
     role: "CEO, TechSolutions",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
-    rating: 5
+    rating: 5,
+    company: "TechSolutions",
+    project: "E-commerce Platform Overhaul",
+    result: "85% increase in conversions"
+  },
+  {
+    quote: "Exceptional talent in both technical implementation and user experience design. Said delivered a solution that not only met our requirements but elevated our entire digital presence.",
+    author: "Lisa Chang",
+    role: "Director of Engineering, DataCorp",
+    image: "https://images.unsplash.com/photo-1494790108755-2616b612b977?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
+    rating: 5,
+    company: "DataCorp",
+    project: "Real-time Dashboard System",
+    result: "50% reduction in response time"
   }
 ];
+
+const AUTO_CAROUSEL_INTERVAL = 6000; // 6 seconds
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,6 +69,8 @@ const Testimonials = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  // Use window.setInterval for browser compatibility
+  const autoCarouselRef = useRef<number | null>(null);
 
   const handleImageError = (index: number) => {
     setImageErrors(prev => ({ ...prev, [index]: true }));
@@ -58,72 +84,127 @@ const Testimonials = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
   };
 
-  const testimonialVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
+  const goToTestimonial = (index: number) => {
+    setCurrentIndex(index);
   };
 
-  // For mobile view, we'll show a simplified version
-  const renderMobileView = () => (
-    <div className="md:hidden">
-      <AnimatePresence initial={false} mode="wait">
-        <motion.div
-          key={currentIndex}
-          variants={testimonialVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ type: "tween", duration: 0.5 }}
-          className="bg-white p-5 pt-8 sm:p-8 rounded-xl shadow-md border border-border/40 relative mx-auto max-w-[90%] sm:max-w-[85%]"
-        >
-          {/* Navigation buttons positioned at the sides */}
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={prevTestimonial}
-            className="absolute left-0 sm:left-2 top-1/2 -translate-x-1/2 sm:-translate-x-1/4 -translate-y-1/2 h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-white shadow-md text-blue-primary hover:bg-blue-primary hover:text-white z-10"
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
-          </Button>
-          
-          <Button
-            variant="outline" 
-            size="icon"
-            onClick={nextTestimonial}
-            className="absolute right-0 sm:right-2 top-1/2 translate-x-1/2 sm:translate-x-1/4 -translate-y-1/2 h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-white shadow-md text-blue-primary hover:bg-blue-primary hover:text-white z-10"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
-          </Button>
+  // Auto-rotate carousel
+  useEffect(() => {
+    if (autoCarouselRef.current) window.clearInterval(autoCarouselRef.current);
+    autoCarouselRef.current = window.setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, AUTO_CAROUSEL_INTERVAL);
+    return () => {
+      if (autoCarouselRef.current) window.clearInterval(autoCarouselRef.current);
+    };
+  }, [testimonials.length]);
 
-          <div className="mb-4 flex justify-center">
+  return (
+    <section 
+      id="testimonials"
+      ref={ref}
+      className="py-32 relative overflow-hidden"
+      style={{
+        background: `
+          radial-gradient(ellipse 1000px 600px at 50% 0%, rgba(90, 89, 242, 0.04), transparent),
+          radial-gradient(ellipse 800px 800px at 0% 100%, rgba(113, 120, 255, 0.03), transparent),
+          linear-gradient(180deg, #ffffff 0%, #fafafa 50%, #ffffff 100%)
+        `
+      }}
+    >
+      {/* Premium Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          className="absolute top-40 right-10 w-80 h-80 rounded-full blur-3xl"
+          style={{ background: 'linear-gradient(135deg, rgba(90, 89, 242, 0.06), rgba(113, 120, 255, 0.04))' }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={inView ? { opacity: 0.7, scale: 1 } : { opacity: 0, scale: 0.8 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        />
+        <motion.div 
+          className="absolute bottom-40 left-10 w-96 h-96 rounded-full blur-3xl"
+          style={{ background: 'linear-gradient(135deg, rgba(113, 120, 255, 0.04), rgba(90, 89, 242, 0.06))' }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={inView ? { opacity: 0.6, scale: 1 } : { opacity: 0, scale: 0.8 }}
+          transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
+        />
+      </div>
+      
+      <div className="container relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-4xl mx-auto mb-20"
+        >
+          <div className="inline-block mb-6">
+            <span className="bg-gradient-premium-soft text-purple-primary text-sm font-semibold px-6 py-2 rounded-full border border-purple-primary/20">
+              CLIENT TESTIMONIALS
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-black mb-8 text-dark leading-tight">
+            What Clients Say About My{' '}
+            <span className="gradient-text-premium">Work</span>
+          </h2>
+          <p className="text-xl text-dark/80 leading-relaxed">
+            Real feedback from satisfied clients who've experienced the impact of exceptional 
+            development and design collaboration.
+          </p>
+        </motion.div>
+
+        {/* Main Testimonial Display */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative"
+            >
+              <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-luxury p-12 border border-purple-primary/10 relative overflow-hidden">
+                {/* Quote Icon */}
+                <div className="absolute top-8 left-8 p-4 bg-gradient-premium rounded-2xl shadow-lg">
+                  <Quote className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Stars */}
+                <div className="flex justify-center mb-8 mt-4">
             {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-              <Star key={i} className="inline-block w-4 h-4 sm:w-5 sm:h-5 fill-accent text-accent mr-1" />
+                    <Star key={i} className="w-6 h-6 fill-amber-400 text-amber-400 mr-1" />
             ))}
           </div>
           
-          <div className="relative mb-6">
-            <Quote className="absolute -top-3 -left-2 text-blue-primary/20 w-8 h-8 sm:w-10 sm:h-10 rotate-180" />
-            <p className="text-dark/80 italic pl-5 text-sm sm:text-base sm:pl-6 relative leading-relaxed">
+                {/* Testimonial Content */}
+                <div className="text-center mb-12">
+                  <p className="text-2xl md:text-3xl text-dark/90 leading-relaxed font-medium mb-8 max-w-4xl mx-auto">
               "{testimonials[currentIndex].quote}"
             </p>
+                  
+                  {/* Project Details */}
+                  <div className="flex flex-wrap justify-center gap-6 mb-8">
+                    <div className="bg-gradient-premium-soft px-4 py-2 rounded-xl border border-purple-primary/20">
+                      <span className="text-sm font-semibold text-purple-primary">Project: </span>
+                      <span className="text-sm text-dark">{testimonials[currentIndex].project}</span>
+                    </div>
+                    <div className="bg-gradient-premium-soft px-4 py-2 rounded-xl border border-purple-primary/20">
+                      <span className="text-sm font-semibold text-accent">Result: </span>
+                      <span className="text-sm text-dark font-semibold">{testimonials[currentIndex].result}</span>
+                    </div>
+                  </div>
           </div>
           
-          <div className="flex items-center justify-center sm:justify-start">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-blue-primary/30 overflow-hidden mr-3 sm:mr-4 bg-gray-50 flex items-center justify-center">
+                {/* Author Info */}
+                <div className="flex items-center justify-center">
+                  <div className="flex items-center">
+                    <div className="relative mr-6">
+                      <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-purple-primary/20 shadow-lg">
               {imageErrors[currentIndex] ? (
-                <User className="w-6 h-6 text-gray-300" />
+                          <div className="w-full h-full bg-gradient-premium-soft flex items-center justify-center">
+                            <User className="w-10 h-10 text-purple-primary" />
+                          </div>
               ) : (
                 <img
                   src={testimonials[currentIndex].image}
@@ -134,173 +215,150 @@ const Testimonials = () => {
                 />
               )}
             </div>
-            <div>
-              <h4 className="font-bold text-dark">{testimonials[currentIndex].author}</h4>
-              <p className="text-dark/60 text-xs sm:text-sm">{testimonials[currentIndex].role}</p>
+                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-premium rounded-full flex items-center justify-center shadow-lg">
+                        <Quote className="w-4 h-4 text-white" />
             </div>
           </div>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Indicators for mobile */}
-      <div className="flex justify-center gap-2 mt-8">
-        {testimonials.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "w-6 sm:w-7 bg-blue-primary" : "w-2 sm:w-2.5 bg-blue-primary/30"
-            }`}
-            aria-label={`Go to testimonial ${index + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-
-  // For desktop view, we'll show a nicer carousel
-  const renderDesktopView = () => (
-    <div className="hidden md:block">
-      <div className="relative">
-        <div className="flex gap-6">
-          {testimonials.map((testimonial, index) => {
-            const isActive = index === currentIndex;
-            const isNext = (index === (currentIndex + 1) % testimonials.length);
-            const isPrev = (index === (currentIndex - 1 + testimonials.length) % testimonials.length);
-            
-            return (
-              <motion.div
-                key={index}
-                initial={{ 
-                  opacity: 0, 
-                  scale: 0.8,
-                  x: index > currentIndex ? 100 : -100
-                }}
-                animate={{ 
-                  opacity: isActive ? 1 : isNext || isPrev ? 0.7 : 0.3,
-                  scale: isActive ? 1 : isNext || isPrev ? 0.9 : 0.8,
-                  x: isActive ? 0 : isNext ? 300 : isPrev ? -300 : (index > currentIndex ? 500 : -500)
-                }}
-                transition={{ duration: 0.6 }}
-                className={`absolute top-0 bg-white rounded-xl shadow-lg border border-border/40 p-8 w-full max-w-2xl mx-auto 
-                  ${isActive ? 'z-20' : isNext || isPrev ? 'z-10' : 'z-0'}`}
-                style={{ left: "calc(50% - 16rem)" }}
-              >
-                <div className="mb-6">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="inline-block w-5 h-5 fill-accent text-accent mr-1" />
-                  ))}
-                </div>
-                
-                <div className="relative mb-8">
-                  <Quote className="absolute -top-3 -left-2 text-blue-primary/20 w-10 h-10 rotate-180" />
-                  <p className="text-dark/80 italic pl-6 relative text-lg leading-relaxed">
-                    "{testimonial.quote}"
+                    <div className="text-left">
+                      <h4 className="text-xl font-bold text-dark mb-1">
+                        {testimonials[currentIndex].author}
+                      </h4>
+                      <p className="text-purple-primary font-semibold mb-1">
+                        {testimonials[currentIndex].role}
+                      </p>
+                      <p className="text-dark/60 text-sm">
+                        {testimonials[currentIndex].company}
                   </p>
                 </div>
-                
-                <div className="flex items-center">
-                  <div className="w-14 h-14 rounded-full border-2 border-blue-primary/30 overflow-hidden mr-4 bg-gray-50 flex items-center justify-center">
-                    {imageErrors[index] ? (
-                      <User className="w-7 h-7 text-gray-300" />
-                    ) : (
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.author}
-                        className="w-full h-full object-cover"
-                        onError={() => handleImageError(index)}
-                        loading="lazy"
-                      />
-                    )}
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-dark">{testimonial.author}</h4>
-                    <p className="text-dark/60 text-sm">{testimonial.role}</p>
                   </div>
                 </div>
+
+                {/* Background Decoration */}
+                <div className="absolute inset-0 bg-gradient-premium-soft opacity-5 pointer-events-none" />
+                </div>
               </motion.div>
-            );
-          })}
+          </AnimatePresence>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-4 mt-8 -mb-6">
+        {/* Navigation */}
+        <div className="flex items-center justify-center gap-8 mb-12">
           <Button
             variant="outline"
             size="icon"
             onClick={prevTestimonial}
-            className="h-12 w-12 rounded-full border-border bg-white shadow-md text-dark hover:bg-blue-primary hover:text-white z-30"
+            className="w-14 h-14 rounded-full border-2 border-purple-primary/30 text-purple-primary hover:bg-gradient-premium hover:text-white hover:border-transparent shadow-lg transition-all duration-300"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-6 w-6" />
           </Button>
+          
+          <div className="flex gap-3">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToTestimonial(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentIndex
+                    ? "w-12 h-3 bg-gradient-premium shadow-md"
+                    : "w-3 h-3 bg-purple-primary/30 hover:bg-purple-primary/50"
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
+          
           <Button
             variant="outline" 
             size="icon"
             onClick={nextTestimonial}
-            className="h-12 w-12 rounded-full border-border bg-white shadow-md text-dark hover:bg-blue-primary hover:text-white z-30"
+            className="w-14 h-14 rounded-full border-2 border-purple-primary/30 text-purple-primary hover:bg-gradient-premium hover:text-white hover:border-transparent shadow-lg transition-all duration-300"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-6 w-6" />
           </Button>
-        </div>
       </div>
       
-      {/* Testimonial indicators */}
-      <div className="flex justify-center gap-2 mt-20">
-        {testimonials.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`h-3 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "w-8 bg-blue-primary" : "w-3 bg-blue-primary/30"
-            }`}
-            aria-label={`Go to testimonial ${index + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-
-  return (
-    <section 
-      id="testimonials"
-      ref={ref}
-      className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-b from-light to-white"
-    >
-      {/* Background decorative elements */}
-      <motion.div 
-        className="absolute top-40 right-10 sm:right-20 w-40 sm:w-64 h-40 sm:h-64 rounded-full bg-blue-primary/5 -z-10"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={inView ? { opacity: 0.7, scale: 1 } : { opacity: 0, scale: 0.8 }}
-        transition={{ duration: 1 }}
-      />
-      <motion.div 
-        className="absolute bottom-40 left-10 sm:left-20 w-40 sm:w-80 h-40 sm:h-80 rounded-full bg-accent/5 -z-10"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={inView ? { opacity: 0.6, scale: 1 } : { opacity: 0, scale: 0.8 }}
-        transition={{ duration: 1, delay: 0.3 }}
-      />
-      
-      <div className="container relative">
+        {/* Testimonial Grid */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.7 }}
-          className="text-center max-w-xl mx-auto mb-10 sm:mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto"
         >
-          <div className="inline-block">
-            <span className="bg-blue-primary/10 text-blue-primary text-xs sm:text-sm font-medium px-3 sm:px-4 py-1 sm:py-1.5 rounded-full inline-block mb-3 sm:mb-4">TESTIMONIALS</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-dark">
-            Client <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-primary to-accent">Feedback</span>
-          </h2>
-          <p className="text-dark/80 text-sm sm:text-base">
-            What my clients have to say about my work and collaboration
-          </p>
+          {testimonials.map((testimonial, index) => (
+            <motion.button
+            key={index}
+              onClick={() => goToTestimonial(index)}
+              className={`group p-6 rounded-2xl transition-all duration-300 ${
+                index === currentIndex
+                  ? "bg-gradient-premium text-white shadow-luxury"
+                  : "bg-white/60 backdrop-blur-sm hover:bg-white/80 border border-purple-primary/10 hover:border-purple-primary/30"
+              }`}
+              whileHover={{ y: -5 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className={`w-16 h-16 rounded-full overflow-hidden border-2 mb-4 ${
+                  index === currentIndex ? "border-white/30" : "border-purple-primary/20"
+                }`}>
+                  {imageErrors[index] ? (
+                    <div className="w-full h-full bg-gradient-premium-soft flex items-center justify-center">
+                      <User className="w-8 h-8 text-purple-primary" />
+                    </div>
+                  ) : (
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.author}
+                      className="w-full h-full object-cover"
+                      onError={() => handleImageError(index)}
+                      loading="lazy"
+                    />
+                  )}
+      </div>
+                <h4 className={`font-bold text-sm mb-1 ${
+                  index === currentIndex ? "text-white" : "text-dark"
+                }`}>
+                  {testimonial.author}
+                </h4>
+                <p className={`text-xs ${
+                  index === currentIndex ? "text-white/80" : "text-dark/60"
+                }`}>
+                  {testimonial.company}
+                </p>
+    </div>
+            </motion.button>
+          ))}
         </motion.div>
 
-        <div className="relative h-[380px] sm:h-[400px] md:h-[420px] mb-8">
-          {renderMobileView()}
-          {renderDesktopView()}
-        </div>
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-center mt-20"
+        >
+          <div className="bg-gradient-premium p-12 rounded-3xl shadow-luxury text-white max-w-4xl mx-auto">
+            <h3 className="text-3xl font-bold mb-4">
+              Ready to Join These Success Stories?
+            </h3>
+            <p className="text-white/90 mb-8 text-lg max-w-2xl mx-auto">
+              Let's create something remarkable together. Experience the same level of 
+              excellence and dedication that these clients have praised.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a
+                href="#contact"
+                className="inline-flex items-center bg-white text-purple-primary px-8 py-4 rounded-2xl font-bold hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-lg"
+              >
+                Start Your Project
+              </a>
+              <a
+                href="#projects"
+                className="inline-flex items-center border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition-all duration-300"
+              >
+                View Portfolio
+              </a>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

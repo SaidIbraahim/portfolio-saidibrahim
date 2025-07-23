@@ -5,12 +5,111 @@ import {
   Cpu, 
   Paintbrush, 
   Code, 
-  Database, 
   Server, 
   Workflow,
   Bot,
-  Github
+  Github,
+  Smartphone,
+  Cloud,
+  Shield,
+  Zap,
+  Star,
+  Award,
+  Sparkles
 } from 'lucide-react';
+
+const skillCategories = [
+  {
+    title: 'Frontend Development',
+    icon: <Code className="w-8 h-8" />, 
+    gradient: 'from-purple-primary to-accent',
+    tier: 'Expert',
+    highlights: [
+      'React & Next.js',
+      'TypeScript',
+      'Tailwind CSS',
+      'Vite & Modern Tooling',
+      'Responsive Design',
+      'Component Architecture',
+      'Animation & Micro-interactions'
+    ]
+  },
+  {
+    title: 'Backend Development',
+    icon: <Server className="w-8 h-8" />, 
+    gradient: 'from-accent to-purple-primary',
+    tier: 'Advanced',
+    highlights: [
+      'Node.js & Express',
+      'REST APIs & GraphQL',
+      'MongoDB & PostgreSQL',
+      'AWS & Cloud Services',
+      'Authentication & Security',
+      'DevOps & CI/CD'
+    ]
+  },
+  {
+    title: 'AI & Automation',
+    icon: <Bot className="w-8 h-8" />, 
+    gradient: 'from-amber-500 to-orange-500',
+    tier: 'Innovator',
+    highlights: [
+      'AI/ML Integration',
+      'OpenAI & LLM APIs',
+      'Prompt Engineering',
+      'Automation Tools',
+      'Data Processing',
+      'AI Product Design',
+      'Business Process Automation'
+    ]
+  }
+];
+
+const tools = [
+  {
+    category: 'Development Tools',
+    icon: <Github className="w-6 h-6" />,
+    gradient: 'from-gray-700 to-gray-900',
+    items: ['Git & GitHub', 'Docker', 'Kubernetes', 'VS Code', 'Postman']
+  },
+  {
+    category: 'Design Software',
+    icon: <Paintbrush className="w-6 h-6" />,
+    gradient: 'from-pink-500 to-purple-500',
+    items: ['Figma', 'Adobe XD', 'Sketch', 'Adobe Creative Suite', 'Framer']
+  },
+  {
+    category: 'Cloud & DevOps',
+    icon: <Cloud className="w-6 h-6" />,
+    gradient: 'from-blue-500 to-cyan-500',
+    items: ['AWS', 'Vercel', 'Netlify', 'Firebase', 'MongoDB Atlas']
+  },
+  {
+    category: 'Mobile & Cross-Platform',
+    icon: <Smartphone className="w-6 h-6" />,
+    gradient: 'from-green-500 to-emerald-500',
+    items: ['React Native', 'Progressive Web Apps', 'Responsive Design', 'Mobile-First']
+  },
+  {
+    category: 'Security & Performance',
+    icon: <Shield className="w-6 h-6" />,
+    gradient: 'from-red-500 to-orange-500',
+    items: ['JWT Authentication', 'API Security', 'Performance Optimization', 'SEO']
+  },
+  {
+    category: 'Project Management',
+    icon: <Workflow className="w-6 h-6" />,
+    gradient: 'from-indigo-500 to-purple-500',
+    items: ['Agile Methodologies', 'Scrum', 'JIRA', 'Notion', 'Team Leadership']
+  }
+];
+
+const tierBadges: Record<string, JSX.Element> = {
+  'Expert': <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-purple-primary to-accent text-white rounded-full text-xs font-bold shadow-luxury"><Star className="w-4 h-4 mr-1" />Expert</span>,
+  'Advanced': <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-accent to-purple-primary text-white rounded-full text-xs font-bold shadow-luxury"><Award className="w-4 h-4 mr-1" />Advanced</span>,
+  'Proven': <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full text-xs font-bold shadow-luxury"><Sparkles className="w-4 h-4 mr-1" />Proven</span>,
+  'Innovator': <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full text-xs font-bold shadow-luxury"><Zap className="w-4 h-4 mr-1" />Innovator</span>
+};
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -29,184 +128,170 @@ const Skills = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };
-
-  // Updated skill categories with more concise content
-  const skillCategories = [
-    {
-      title: 'Frontend Development',
-      icon: <Code className="w-6 h-6" />,
-      skills: [
-        'React',
-        'Vite',
-        'Tailwind CSS'
-      ]
-    },
-    {
-      title: 'Backend Development',
-      icon: <Server className="w-6 h-6" />,
-      skills: [
-        'Node.js & Express',
-        'REST APIs Development',
-        'MongoDB & SQL Databases',
-        'AWS',
-        'CI/CD'
-      ]
-    },
-    {
-      title: 'UX Design',
-      icon: <Paintbrush className="w-6 h-6" />,
-      skills: [
-        'Figma',
-        'Adobe XD',
-        'Wireframing & Prototyping',
-        'User Research',
-        'UX/UI Design'
-      ]
-    }
-  ];
-
-  // Updated tools list
-  const tools = [
-    {
-      category: 'Development Tools',
-      icon: <Github className="w-5 h-5" />,
-      items: [
-        'Git', 'GitHub', 'Docker', 'Kubernetes'
-      ]
-    },
-    {
-      category: 'AI & Automation',
-      icon: <Bot className="w-5 h-5" />,
-      items: [
-        'OpenAI API', 'Gemini AI', 'Automation Tools'
-      ]
-    },
-    {
-      category: 'Project Management',
-      icon: <Workflow className="w-5 h-5" />,
-      items: [
-        'Agile', 'JIRA', 'Notion'
-      ]
-    }
-  ];
 
   return (
     <section 
       id="skills" 
       ref={ref}
-      className="py-24 relative overflow-hidden bg-gradient-to-b from-white to-light"
+      className="py-32 relative overflow-hidden"
+      style={{
+        background: `
+          radial-gradient(ellipse 800px 600px at 0% 0%, rgba(90, 89, 242, 0.05), transparent),
+          radial-gradient(ellipse 1000px 800px at 100% 100%, rgba(113, 120, 255, 0.04), transparent),
+          linear-gradient(180deg, #fafafa 0%, #ffffff 50%, #fafafa 100%)
+        `
+      }}
     >
-      {/* Background decorative elements */}
+      {/* Premium Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <motion.div 
-        className="absolute top-40 right-20 w-64 h-64 rounded-full bg-accent/5 -z-10"
+          className="absolute top-40 right-20 w-80 h-80 rounded-full blur-3xl"
+          style={{ background: 'linear-gradient(135deg, rgba(90, 89, 242, 0.08), rgba(113, 120, 255, 0.06))' }}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={inView ? { opacity: 0.7, scale: 1 } : { opacity: 0, scale: 0.8 }}
-        transition={{ duration: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
       />
       <motion.div 
-        className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-blue-primary/5 -z-10"
+          className="absolute bottom-40 left-20 w-96 h-96 rounded-full blur-3xl"
+          style={{ background: 'linear-gradient(135deg, rgba(113, 120, 255, 0.06), rgba(90, 89, 242, 0.04))' }}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={inView ? { opacity: 0.6, scale: 1 } : { opacity: 0, scale: 0.8 }}
-        transition={{ duration: 1, delay: 0.3 }}
+          transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
       />
+      </div>
 
-      <div className="container relative z-10">
+      {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.7 }}
-          className="text-center max-w-xl mx-auto mb-16"
+        initial={{ opacity: 0, y: 40 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+        transition={{ duration: 0.8 }}
+        className="text-center max-w-4xl mx-auto mb-20"
         >
-          <div className="inline-block">
-            <span className="bg-blue-primary/10 text-blue-primary text-sm font-medium px-4 py-1.5 rounded-full inline-block mb-4">SKILLS & EXPERTISE</span>
+        <div className="inline-block mb-6">
+          <span className="bg-gradient-premium-soft text-purple-primary text-sm font-semibold px-6 py-2 rounded-full border border-purple-primary/20">
+            SKILLS & EXPERTISE
+          </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-dark">
-            Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-primary to-accent">Expertise</span>
+        <h2 className="text-5xl md:text-6xl font-black mb-8 text-dark leading-tight">
+          Technical <span className="gradient-text-premium">Excellence</span>
           </h2>
-          <p className="text-dark/80">
-            My core competencies and technical toolkit
+        <p className="text-xl text-dark/80 leading-relaxed">
+          My comprehensive skill set spanning modern development technologies, 
+          innovative design principles, and emerging AI technologies.
           </p>
         </motion.div>
 
-        {/* Professional Areas */}
+      {/* Main Skills Categories */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-20"
         >
-          {skillCategories.map((category) => (
+        {skillCategories.map((category, index) => (
             <motion.div 
               key={category.title} 
               variants={itemVariants}
-              className="bg-white rounded-xl shadow-md p-6 border border-border/40 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-blue-primary/10 text-blue-primary rounded-lg mr-4">
+            className="group relative"
+          >
+            <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-luxury hover:shadow-luxury-hover p-10 border border-purple-primary/10 hover:border-purple-primary/30 transition-all duration-700 h-full flex flex-col">
+              {/* Header */}
+              <div className="flex items-center mb-8">
+                <div className={`p-4 bg-gradient-to-br ${category.gradient} rounded-2xl mr-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="text-white">
                   {category.icon}
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-dark">{category.title}</h3>
+                <div>
+                  <h3 className="text-2xl font-bold text-dark group-hover:text-purple-primary transition-colors duration-300 mb-2">
+                    {category.title}
+                  </h3>
+                  {tierBadges[category.tier]}
+                </div>
               </div>
 
-              <ul className="space-y-2 pl-2">
-                {category.skills.map((skill) => (
-                  <li 
-                    key={skill} 
-                    className="flex items-center text-dark/80"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-primary mr-2"></span>
-                    {skill}
+              {/* Highlights */}
+              <ul className="flex flex-wrap gap-3 mb-4">
+                {category.highlights.map((highlight, i) => (
+                  <li key={highlight} className="inline-flex items-center px-4 py-2 bg-gradient-premium-soft text-purple-primary font-semibold rounded-xl text-sm shadow-sm hover:shadow-luxury transition-all duration-300 hover-lift">
+                    <Sparkles className="w-4 h-4 mr-2 text-accent" />
+                    {highlight}
                   </li>
                 ))}
               </ul>
+            </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Tools */}
+      {/* Tools & Technologies */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="mb-20"
+      >
+        <div className="text-center mb-12">
+          <h3 className="text-4xl font-bold text-dark mb-4">
+            Tools & <span className="gradient-text-premium">Technologies</span>
+          </h3>
+          <p className="text-lg text-dark/70 max-w-3xl mx-auto">
+            The comprehensive toolkit I use to bring ideas to life and deliver exceptional results.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {tools.map((toolCategory, index) => (
         <motion.div
+              key={toolCategory.category}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="max-w-5xl mx-auto bg-white rounded-xl shadow-md p-6 border border-border/40"
-        >
-          <h3 className="text-xl font-bold text-dark mb-6 text-center">Tools & Technologies</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {tools.map((toolCategory) => (
-              <div key={toolCategory.category}>
-                <div className="flex items-center mb-3">
-                  <div className="p-2 bg-blue-primary/10 text-blue-primary rounded-md mr-3">
+              transition={{ duration: 0.6, delay: 0.5 + (index * 0.1) }}
+              className="group"
+            >
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-luxury transition-all duration-500 border border-purple-primary/10 hover:border-purple-primary/30 hover-lift h-full">
+                {/* Header */}
+                <div className="flex items-center mb-6">
+                  <div className={`p-3 bg-gradient-to-br ${toolCategory.gradient} rounded-xl mr-4 shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                    <div className="text-white">
                     {toolCategory.icon}
+                    </div>
                   </div>
-                  <h4 className="font-semibold text-dark">{toolCategory.category}</h4>
+                  <h4 className="font-bold text-dark group-hover:text-purple-primary transition-colors duration-300">
+                    {toolCategory.category}
+                  </h4>
                 </div>
                 
-                <ul className="space-y-1.5 pl-2">
-                  {toolCategory.items.map((item) => (
-                    <li 
+                {/* Tools List */}
+                <div className="space-y-3">
+                  {toolCategory.items.map((item, itemIndex) => (
+                    <motion.div
                       key={item}
-                      className="flex items-center text-dark/80"
+                      className="flex items-center text-dark/80 hover:text-purple-primary transition-colors duration-200"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                      transition={{ delay: 0.7 + (index * 0.1) + (itemIndex * 0.05) }}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-primary/70 mr-2"></span>
-                      {item}
-                    </li>
+                      <div className="w-2 h-2 bg-gradient-premium rounded-full mr-3 flex-shrink-0" />
+                      <span className="font-medium">{item}</span>
+                    </motion.div>
                   ))}
-                </ul>
+                </div>
               </div>
+            </motion.div>
             ))}
           </div>
         </motion.div>
-      </div>
     </section>
   );
 };

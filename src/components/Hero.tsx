@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Instagram, User, Code, LayoutGrid, BarChart2 } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Instagram, User, Code, LayoutGrid, BarChart2, Sparkles, Zap } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { useInView } from 'react-intersection-observer';
-import ProfilePhoto from '../assets/images/ProfilePhoto.jpg';
+import ProfilePhoto from '../assets/images/profile-photo.jpg';
 
 const Hero = () => {
   const [showTitle, setShowTitle] = useState(false);
@@ -18,26 +18,27 @@ const Hero = () => {
   }, []);
 
   const heroTextVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.4, 0, 0.2, 1],
+        duration: 1,
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };
 
   const statsVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 40, scale: 0.9 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        delay: 1.5 + (i * 0.2),
+        delay: 1.8 + (i * 0.2),
         duration: 0.8,
-        ease: [0.4, 0, 0.2, 1],
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     }),
   };
@@ -46,17 +47,20 @@ const Hero = () => {
     {
       value: "4+",
       label: "Years Experience",
-      icon: <User className="h-5 w-5 text-blue-primary" />,
+      icon: <User className="h-6 w-6 text-purple-primary" />,
+      gradient: "from-purple-primary to-accent"
     },
     {
-      value: "50+",
+      value: "70+",
       label: "Projects Completed",
-      icon: <Code className="h-5 w-5 text-blue-primary" />,
+      icon: <Code className="h-6 w-6 text-purple-primary" />,
+      gradient: "from-accent to-purple-primary"
     },
     {
-      value: "12+",
+      value: "15+",
       label: "Design Systems",
-      icon: <LayoutGrid className="h-5 w-5 text-blue-primary" />,
+      icon: <LayoutGrid className="h-6 w-6 text-purple-primary" />,
+      gradient: "from-purple-primary via-accent to-purple-primary"
     },
   ];
 
@@ -64,22 +68,26 @@ const Hero = () => {
     { 
       icon: <Github className="h-6 w-6" />,
       href: "https://github.com/SaidIbraahim/", 
-      label: "GitHub Profile"
+      label: "GitHub Profile",
+      color: "hover:text-purple-primary"
     },
     { 
       icon: <Linkedin className="h-6 w-6" />,
       href: "https://www.linkedin.com/in/sa-ibrahim", 
-      label: "LinkedIn Profile"
+      label: "LinkedIn Profile",
+      color: "hover:text-accent"
     },
     { 
       icon: <Instagram className="h-6 w-6" />,
       href: "https://www.instagram.com/saidibrahim.tech/", 
-      label: "Instagram Profile"
+      label: "Instagram Profile",
+      color: "hover:text-purple-primary"
     },
     { 
       icon: <BarChart2 className="h-6 w-6" />,
       href: "https://www.tiktok.com/@saidibrahim.tech", 
-      label: "TikTok Profile"
+      label: "TikTok Profile",
+      color: "hover:text-accent"
     }
   ];
 
@@ -87,132 +95,212 @@ const Hero = () => {
     <section 
       id="hero" 
       ref={ref}
-      className="min-h-screen flex items-center pt-24 pb-16 bg-light overflow-hidden"
+      className="min-h-screen flex items-center pt-32 pb-20 relative overflow-hidden"
+      style={{
+        background: `
+          radial-gradient(ellipse 800px 600px at 50% 0%, rgba(90, 89, 242, 0.08), transparent),
+          radial-gradient(ellipse 1200px 800px at 100% 100%, rgba(113, 120, 255, 0.06), transparent),
+          linear-gradient(180deg, #fafafa 0%, #ffffff 100%)
+        `
+      }}
     >
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-5 gap-12 items-center">
-          <div className="lg:col-span-3 space-y-8">
+      {/* Premium Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, rotate: -45 }}
+          animate={inView ? { opacity: 0.03, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: -45 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+          className="absolute top-1/4 -right-40 w-96 h-96 bg-gradient-to-br from-purple-primary to-accent rounded-full blur-3xl"
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, rotate: 45 }}
+          animate={inView ? { opacity: 0.02, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: 45 }}
+          transition={{ duration: 3, delay: 0.5, ease: "easeOut" }}
+          className="absolute bottom-1/4 -left-40 w-80 h-80 bg-gradient-to-tr from-accent to-purple-primary rounded-full blur-3xl"
+        />
+        
+        {/* Floating Particles */}
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ 
+              opacity: [0, 0.6, 0],
+              y: [-20, -100, -20],
+              x: [0, Math.random() * 100 - 50, 0]
+            }}
+            transition={{
+              duration: 4 + Math.random() * 2,
+              repeat: Infinity,
+              delay: i * 0.5,
+              ease: "easeInOut"
+            }}
+            className="absolute w-2 h-2 bg-gradient-to-r from-purple-primary to-accent rounded-full"
+            style={{
+              left: `${20 + Math.random() * 60}%`,
+              top: `${60 + Math.random() * 20}%`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-5 gap-16 items-center">
+          <div className="lg:col-span-3 space-y-10">
             <motion.div
               className="flex items-center space-x-4"
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={heroTextVariants}
             >
-              <div className="h-1 w-12 bg-blue-primary"></div>
-              <span className="text-blue-primary font-semibold tracking-wider uppercase text-sm">
-                Software Developer & UX Designer
-              </span>
+              <motion.div 
+                className="h-1 bg-gradient-to-r from-purple-primary to-accent rounded-full"
+                initial={{ width: 0 }}
+                animate={inView ? { width: 48 } : { width: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              />
+              <div className="flex items-center space-x-2">
+                <Sparkles className="h-5 w-5 text-purple-primary" />
+                <span className="text-purple-primary font-semibold tracking-wider uppercase text-sm bg-gradient-premium-soft px-4 py-2 rounded-full">
+                  Software & AI Solutions Engineer
+                </span>
+              </div>
             </motion.div>
 
-            <motion.h1
-              className="text-5xl md:text-7xl font-bold leading-tight text-dark"
+            <motion.div
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={heroTextVariants}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.4 }}
             >
-              Creating Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-primary via-accent to-blue-primary">Experiences</span> That Matter
-            </motion.h1>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] text-dark mb-6">
+                I build <span className="gradient-text-premium">smart web software</span> <br />
+                and <span className="gradient-text-premium">AI tools</span> that solve <br />
+                real business problems.
+              </h1>
+            </motion.div>
 
             <motion.p
-              className="text-lg md:text-xl text-dark/80 max-w-2xl leading-relaxed"
+              className="text-xl md:text-2xl text-dark/80 max-w-2xl leading-relaxed font-medium"
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={heroTextVariants}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.7 }}
             >
-              Merging technical excellence with intuitive design to craft beautiful, 
-              user-centric digital solutions for forward-thinking businesses.
+              From automation to custom platforms — everything is built to save time, cut manual work, and just work.<br />
+              <span className="text-dark/60 text-base block mt-3">(I also do UX/UI design)</span>
             </motion.p>
 
             <motion.div
-              className="flex flex-wrap gap-4 pt-2"
+              className="flex flex-wrap gap-6 pt-6"
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={heroTextVariants}
-              transition={{ delay: 0.9 }}
+              transition={{ delay: 1 }}
             >
               <Button
                 size="lg"
-                className="group bg-blue-primary hover:bg-accent text-white font-medium transition-all duration-300 transform hover:scale-105"
+                className="group bg-gradient-premium hover:shadow-luxury-hover text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-luxury"
                 asChild
               >
                 <a href="#projects">
+                  <Zap className="mr-2 w-5 h-5" />
                   View My Work
-                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-2" />
                 </a>
               </Button>
               
               <Button
                 variant="outline"
                 size="lg"
-                className="group border-blue-primary text-blue-primary hover:text-white hover:bg-blue-primary/90 font-medium transition-all duration-300"
+                className="group border-2 border-purple-primary/30 text-purple-primary hover:text-white hover:bg-gradient-premium font-semibold px-8 py-4 rounded-2xl transition-all duration-500 backdrop-blur-sm hover:border-transparent hover:shadow-luxury"
                 asChild
               >
                 <a href="#contact">
                   Get In Touch
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
             </motion.div>
 
             <motion.div
-              className="flex gap-5 pt-4"
+              className="flex gap-6 pt-6"
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={heroTextVariants}
-              transition={{ delay: 1.2 }}
+              transition={{ delay: 1.3 }}
             >
               {socialLinks.map((social, index) => (
-                <a
+                <motion.a
                   key={index} 
                   href={social.href} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-dark hover:text-blue-primary transition-colors"
+                  className={`p-4 bg-white/80 backdrop-blur-sm rounded-2xl text-dark ${social.color} transition-all duration-300 hover:shadow-luxury hover:scale-110 border border-purple-primary/10`}
                   aria-label={social.label}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {social.icon}
-                </a>
+                </motion.a>
               ))}
             </motion.div>
           </div>
 
           <div className="lg:col-span-2 relative">
             <motion.div
-              className="relative z-10 overflow-hidden rounded-2xl aspect-[3/4] bg-gradient-to-br from-blue-primary/80 to-accent/80 shadow-xl"
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              className="relative z-10 overflow-hidden rounded-3xl aspect-[3/4] shadow-luxury"
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 60, scale: 0.9 }}
+              transition={{ duration: 1.2, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <div className="w-full h-full relative">
-                <motion.img
-                  src={ProfilePhoto}
-                  alt="Said Ibrahim"
-                  className="w-full h-full object-cover object-center mix-blend-overlay opacity-90"
-                  initial={{ scale: 1.2 }}
-                  animate={inView ? { scale: 1 } : { scale: 1.2 }}
-                  transition={{ duration: 1.5 }}
-                />
+              <div className="w-full h-full relative bg-gradient-premium p-1 rounded-3xl">
+                <div className="w-full h-full bg-gradient-to-br from-white/20 to-transparent rounded-3xl overflow-hidden backdrop-blur-sm">
+                  <motion.img
+                    src={ProfilePhoto}
+                    alt="Said Ibrahim"
+                    className="w-full h-full object-cover object-center"
+                    initial={{ scale: 1.3 }}
+                    animate={inView ? { scale: 1 } : { scale: 1.3 }}
+                    transition={{ duration: 2, ease: "easeOut" }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-purple-primary/20 via-transparent to-accent/10" />
+                </div>
               </div>
             </motion.div>
             
+            {/* Floating Elements */}
             <motion.div
-              className="absolute -bottom-6 -left-6 h-24 w-24 bg-accent rounded-xl"
-              initial={{ opacity: 0, x: -20 }}
-              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              className="absolute -bottom-8 -left-8 h-32 w-32 bg-gradient-premium rounded-3xl shadow-luxury"
+              initial={{ opacity: 0, x: -30, rotate: -10 }}
+              animate={inView ? { opacity: 1, x: 0, rotate: 0 } : { opacity: 0, x: -30, rotate: -10 }}
+              transition={{ duration: 1, delay: 1, ease: "easeOut" }}
             />
             
             <motion.div
-              className="absolute -top-6 -right-6 h-24 w-24 bg-blue-primary rounded-xl"
-              initial={{ opacity: 0, x: 20 }}
-              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              className="absolute -top-8 -right-8 h-24 w-24 bg-gradient-to-br from-accent to-purple-primary rounded-2xl shadow-luxury"
+              initial={{ opacity: 0, x: 30, rotate: 10 }}
+              animate={inView ? { opacity: 1, x: 0, rotate: 0 } : { opacity: 0, x: 30, rotate: 10 }}
+              transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
             />
+
+            {/* Glass Effect Card */}
+            <motion.div
+              className="absolute top-16 -left-12 p-4 glass-effect rounded-2xl shadow-lg"
+              initial={{ opacity: 0, x: -40 }}
+              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+              transition={{ duration: 1, delay: 1.5 }}
+            >
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-sm font-medium text-dark">Available for work</span>
+              </div>
+            </motion.div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24">
+        {/* Premium Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-32">
           {heroStats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -220,32 +308,40 @@ const Hero = () => {
               variants={statsVariants}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
-              className="flex items-center p-6 rounded-xl bg-white shadow-sm border border-border/40 hover:shadow-md transition-shadow"
+              className="group relative"
             >
-              <div className="p-3 bg-light rounded-lg mr-4">
-                {stat.icon}
-              </div>
-              <div>
-                <h3 className="text-3xl font-bold text-dark">{stat.value}</h3>
-                <p className="text-dark/70">{stat.label}</p>
+              <div className="flex items-center p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-purple-primary/10 hover:border-purple-primary/30 shadow-lg hover:shadow-luxury transition-all duration-500 hover-lift">
+                <div className={`p-4 bg-gradient-to-br ${stat.gradient} rounded-2xl mr-6 shadow-lg`}>
+                  {stat.icon}
+                </div>
+                <div>
+                  <h3 className="text-4xl font-bold text-dark mb-1">{stat.value}</h3>
+                  <p className="text-dark/70 font-medium">{stat.label}</p>
+                </div>
+                <div className="absolute inset-0 bg-gradient-premium-soft opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500" />
               </div>
             </motion.div>
           ))}
         </div>
       </div>
       
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+      {/* Enhanced Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block">
         <a href="#about" aria-label="Scroll to About section">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2, duration: 0.5 }}
+            transition={{ delay: 2.5, duration: 0.8 }}
             className="flex flex-col items-center"
           >
-            <span className="text-sm text-dark/60 mb-2">Scroll Down</span>
-            <div className="w-5 h-9 border-2 border-blue-primary/30 rounded-full flex items-center justify-center">
-              <div className="w-1.5 h-1.5 bg-blue-primary rounded-full animate-scroll"></div>
-            </div>
+            <span className="text-sm text-dark/60 mb-3 font-medium">Scroll to explore</span>
+            <motion.div
+              className="w-6 h-12 border-2 border-purple-primary/40 rounded-full flex items-center justify-center"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="w-2 h-2 bg-gradient-premium rounded-full" />
+            </motion.div>
           </motion.div>
         </a>
       </div>
