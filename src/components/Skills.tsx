@@ -130,7 +130,7 @@ const Skills = () => {
     <section 
       id="skills" 
       ref={ref}
-      className="py-32 relative overflow-hidden"
+      className="py-16 md:py-20 relative overflow-hidden"
       style={{
         background: `
           radial-gradient(ellipse 800px 600px at 0% 0%, rgba(113, 120, 255, 0.05), transparent),
@@ -162,17 +162,17 @@ const Skills = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.8 }}
-        className="text-center max-w-4xl mx-auto mb-20"
+        className="text-center max-w-4xl mx-auto mb-12"
         >
         <div className="inline-block mb-6">
           <span className="bg-gradient-premium-soft text-purple-primary text-sm font-semibold px-6 py-2 rounded-full border border-purple-primary/20">
             SKILLS & EXPERTISE
           </span>
           </div>
-        <h2 className="text-5xl md:text-6xl font-black mb-8 text-dark leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 md:mb-8 text-dark leading-tight">
           Technical <span className="gradient-text-premium">Excellence</span>
           </h2>
-        <p className="text-xl text-dark/80 leading-relaxed">
+        <p className="text-lg sm:text-xl text-dark/80 leading-relaxed">
           Specializing in AI & LangChain development, GenAI applications, and RAG systems, 
           combined with modern development technologies for building intelligent, scalable solutions.
           </p>
@@ -183,7 +183,7 @@ const Skills = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-        className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto mb-20"
+        className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto mb-12"
         >
         {skillCategories.map((category, index) => (
             <motion.div 
@@ -226,10 +226,10 @@ const Skills = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="mb-20"
+        className="mb-12"
       >
         <div className="text-center mb-12">
-          <h3 className="text-4xl font-bold text-dark mb-4">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4">
             Tools & <span className="gradient-text-premium">Technologies</span>
           </h3>
           <p className="text-lg text-dark/70 max-w-3xl mx-auto">

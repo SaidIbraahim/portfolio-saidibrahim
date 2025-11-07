@@ -163,12 +163,12 @@ const Projects = () => {
     <section 
       id="projects" 
       ref={ref}
-      className="py-32 relative overflow-hidden"
+      className="py-16 md:py-20 relative overflow-hidden"
       style={{
         background: `
           radial-gradient(ellipse 1200px 800px at 100% 0%, rgba(113, 120, 255, 0.03), transparent),
           radial-gradient(ellipse 800px 600px at 0% 100%, rgba(62, 143, 250, 0.04), transparent),
-          linear-gradient(180deg, #ffffff 0%, #fafafa 100%)
+          linear-gradient(180deg, #fafafa 0%, #ffffff 50%, #fafafa 100%)
         `
       }}
     >
@@ -193,18 +193,18 @@ const Projects = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto mb-20"
+          className="text-center max-w-4xl mx-auto mb-12"
         >
           <div className="inline-block mb-4">
             <span className="bg-gradient-premium-soft text-purple-primary text-sm font-semibold px-6 py-2 rounded-full border border-purple-primary/20">
               FEATURED WORK
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-black mb-8 text-dark leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 md:mb-8 text-dark leading-tight">
             Transforming Ideas Into{' '}
             <span className="gradient-text-premium">Digital Reality</span>
           </h2>
-          <p className="text-xl text-dark/70 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-dark/70 max-w-3xl mx-auto leading-relaxed">
             Discover my latest projects showcasing cutting-edge technology, innovative design, 
             and impactful solutions that drive business growth and user engagement.
           </p>
@@ -215,7 +215,7 @@ const Projects = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12"
         >
           {featuredProjects.map((project, index) => (
               <motion.div
@@ -253,7 +253,7 @@ const Projects = () => {
                 <div className="p-8">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold text-dark mb-2 group-hover:text-purple-primary transition-colors duration-300">
+                      <h3 className="text-xl sm:text-2xl font-bold text-dark mb-2 group-hover:text-purple-primary transition-colors duration-300">
                         {project.title}
                       </h3>
                       {project.tagline && (
@@ -319,12 +319,12 @@ const Projects = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mb-12"
+          className="mb-8"
         >
-          <h3 className="text-3xl font-bold text-dark text-center mb-4">
+          <h3 className="text-2xl sm:text-3xl font-bold text-dark text-center mb-4">
             More <span className="gradient-text-premium">Projects</span>
           </h3>
-          <p className="text-dark/70 text-center max-w-2xl mx-auto mb-12">
+          <p className="text-dark/70 text-center max-w-2xl mx-auto mb-8">
             Explore additional projects showcasing diverse technologies and creative solutions.
           </p>
         </motion.div>
@@ -418,7 +418,7 @@ const Projects = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-20"
+          className="text-center mt-12"
         >
           <div className="bg-gradient-premium p-12 rounded-3xl shadow-luxury text-white">
             <h3 className="text-3xl font-bold mb-4">

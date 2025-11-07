@@ -25,8 +25,6 @@ const Footer = () => {
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Blog', href: '#blog' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -76,12 +74,12 @@ const Footer = () => {
   ];
 
   const services = [
-    'Web Development',
-    'UX/UI Design',
-    'Mobile Development',
-    'AI Integration',
-    'E-commerce Solutions',
-    'Digital Consulting'
+    'AI & LangChain Development',
+    'GenAI Applications',
+    'RAG Systems',
+    'AI Agents & Automation',
+    'Foundation Models',
+    'Business Process Automation'
   ];
 
   return (
@@ -90,7 +88,7 @@ const Footer = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
           className="absolute top-0 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-10"
-          style={{ background: 'linear-gradient(135deg, #5a59f2, #7178ff)' }}
+          style={{ background: 'linear-gradient(135deg, #7178ff, #3e8ffa)' }}
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
@@ -103,7 +101,7 @@ const Footer = () => {
         />
         <motion.div 
           className="absolute bottom-1/3 left-1/4 w-80 h-80 rounded-full blur-3xl opacity-5"
-          style={{ background: 'linear-gradient(135deg, #7178ff, #5a59f2)' }}
+          style={{ background: 'linear-gradient(135deg, #3e8ffa, #7178ff)' }}
           animate={{
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0],
@@ -117,7 +115,7 @@ const Footer = () => {
       </div>
 
       <div className="container relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Brand & About Section */}
           <motion.div
             custom={0}
@@ -125,17 +123,17 @@ const Footer = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUpVariants}
-            className="lg:col-span-2 space-y-6"
+            className="lg:col-span-2 space-y-4 md:space-y-6"
           >
             <div className="flex items-center space-x-2 mb-6">
-              <h3 className="text-3xl font-black flex items-center">
+              <h3 className="text-2xl sm:text-3xl font-black flex items-center">
                 <span className="gradient-text-premium">Said</span>
                 <span className="text-blue-primary ml-1">.</span>
                 <Sparkles className="w-6 h-6 text-blue-primary ml-2" />
             </h3>
             </div>
             
-            <p className="text-light/80 max-w-lg leading-relaxed text-lg">
+            <p className="text-light/80 max-w-lg leading-relaxed text-base sm:text-lg">
               Building smarter, context-aware solutions through LangChain development and AI agents.<br />
               GenAI Applications, Foundation Models & RAG Systems for business automation.<br />
               Saving time and boosting productivity with intelligent AI solutions.
@@ -253,7 +251,7 @@ const Footer = () => {
                 <span className="font-bold text-purple-primary">Available for Projects</span>
               </div>
               <p className="text-sm text-dark/70">
-                Currently accepting new projects for Q1 2024
+                Currently accepting new projects for Q1 2025
               </p>
             </div>
           </motion.div>

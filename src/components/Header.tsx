@@ -42,12 +42,12 @@ const Header = () => {
         scrolled ? 'backdrop-blur-lg py-4' : 'py-6'
       }`}
     >
-      <div className="container flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
         <motion.a
           href="#hero"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center space-x-2 font-black text-3xl text-white group"
+          className="flex items-center space-x-2 font-black text-2xl sm:text-3xl text-white group"
         >
           <div className="relative flex items-center">
             <span className="text-white">Said</span>

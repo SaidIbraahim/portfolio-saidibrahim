@@ -154,7 +154,7 @@ const Contact = () => {
     <section 
       id="contact" 
       ref={ref}
-      className="py-32 relative overflow-hidden"
+      className="py-16 md:py-20 relative overflow-hidden"
       style={{
         background: `
           radial-gradient(ellipse 800px 600px at 0% 50%, rgba(113, 120, 255, 0.04), transparent),
@@ -187,21 +187,21 @@ const Contact = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto mb-20"
+          className="text-center max-w-4xl mx-auto mb-12"
         >
           <div className="inline-block mb-6">
             <span className="bg-gradient-premium-soft text-purple-primary text-sm font-semibold px-6 py-2 rounded-full border border-purple-primary/20">
               GET IN TOUCH
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-black mb-8 text-dark leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 md:mb-8 text-dark leading-tight">
             AI & Software Solutions Developer
           </h2>
-          <p className="text-xl text-dark/80 leading-relaxed max-w-3xl mx-auto mb-4">
+          <p className="text-lg sm:text-xl text-dark/80 leading-relaxed max-w-3xl mx-auto mb-4">
             GenAI Applications, Foundation Models & RAG Systems
           </p>
-          <p className="text-xl text-dark/80 leading-relaxed max-w-3xl mx-auto">
-            Building smarter, context-aware solutions through LangChain development and AI agents.<br />
+          <p className="text-lg sm:text-xl text-dark/80 leading-relaxed max-w-3xl mx-auto">
+            Building smarter, context-aware solutions through LangChain development and AI agents.<br className="hidden sm:block" />
             Specializing in business automation that saves time and boosts productivity.
           </p>
         </motion.div>
@@ -306,8 +306,8 @@ const Contact = () => {
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
             >
-              <div className="bg-white/90 backdrop-blur-sm p-12 rounded-3xl shadow-luxury border border-purple-primary/10">
-                <h3 className="text-3xl font-bold mb-8 text-dark">
+              <div className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 md:p-12 rounded-3xl shadow-luxury border border-purple-primary/10">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 text-dark">
                   Start Your <span className="gradient-text-premium">Project</span>
                 </h3>
                 
@@ -467,7 +467,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-20"
+          className="text-center mt-12"
         >
           <div className="bg-gradient-premium p-8 rounded-3xl shadow-luxury text-white max-w-4xl mx-auto">
             <div className="flex items-center justify-center mb-4">

@@ -95,7 +95,7 @@ const Hero = () => {
     <section 
       id="hero" 
       ref={ref}
-      className="min-h-screen flex items-center pt-32 pb-20 relative overflow-hidden"
+      className="min-h-screen flex items-center pt-32 pb-12 relative overflow-hidden"
       style={{
         background: `
           radial-gradient(ellipse 800px 600px at 50% 0%, rgba(113, 120, 255, 0.08), transparent),
@@ -173,23 +173,21 @@ const Hero = () => {
               variants={heroTextVariants}
               transition={{ delay: 0.4 }}
             >
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] text-dark mb-6">
-                Building <span className="gradient-text-premium">GenAI Applications</span> <br />
-                and <span className="gradient-text-premium">AI Agents</span> that <br />
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] text-dark mb-6">
+                Building <span className="gradient-text-premium">GenAI Applications</span> <br className="hidden sm:block" />
+                and <span className="gradient-text-premium">AI Agents</span> that <br className="hidden sm:block" />
                 boost productivity.
               </h1>
             </motion.div>
 
             <motion.p
-              className="text-xl md:text-2xl text-dark/80 max-w-2xl leading-relaxed font-medium"
+              className="text-lg sm:text-xl md:text-2xl text-dark/80 max-w-2xl leading-relaxed font-medium"
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={heroTextVariants}
               transition={{ delay: 0.7 }}
             >
-              LangChain development • AI agents • Business automation<br />
-              Saving time and boosting productivity with intelligent, context-aware solutions.<br />
-             
+              Building intelligent, context-aware solutions that transform businesses.
             </motion.p>
 
             <motion.div
@@ -201,7 +199,7 @@ const Hero = () => {
             >
               <Button
                 size="lg"
-                className="group bg-gradient-premium hover:shadow-luxury-hover text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-luxury"
+                className="group bg-gradient-premium hover:shadow-luxury-hover text-white font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-luxury text-sm sm:text-base"
                 asChild
               >
                 <a href="#projects">
@@ -214,7 +212,7 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="group border-2 border-purple-primary/30 text-purple-primary hover:text-white hover:bg-gradient-premium font-semibold px-8 py-4 rounded-2xl transition-all duration-500 backdrop-blur-sm hover:border-transparent hover:shadow-luxury"
+                className="group border-2 border-purple-primary/30 text-purple-primary hover:text-white hover:bg-gradient-premium font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-2xl transition-all duration-500 backdrop-blur-sm hover:border-transparent hover:shadow-luxury text-sm sm:text-base"
                 asChild
               >
                 <a href="#contact">
@@ -301,7 +299,7 @@ const Hero = () => {
         </div>
 
         {/* Premium Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {heroStats.map((stat, index) => (
             <motion.div
               key={stat.label}
