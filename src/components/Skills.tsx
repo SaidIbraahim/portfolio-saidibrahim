@@ -3,13 +3,11 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
   Cpu, 
-  Paintbrush, 
   Code, 
   Server, 
   Workflow,
   Bot,
   Github,
-  Smartphone,
   Cloud,
   Shield,
   Zap,
@@ -20,9 +18,24 @@ import {
 
 const skillCategories = [
   {
+    title: 'AI & LangChain Development',
+    icon: <Bot className="w-8 h-8" />, 
+    gradient: 'from-orange-primary to-purple-primary',
+    tier: 'Innovator',
+    highlights: [
+      'LangChain Development',
+      'RAG Systems',
+      'GenAI Applications',
+      'Foundation Models',
+      'AI Agents',
+      'LLM Integration',
+      'Business Automation'
+    ]
+  },
+  {
     title: 'Frontend Development',
     icon: <Code className="w-8 h-8" />, 
-    gradient: 'from-purple-primary to-accent',
+    gradient: 'from-purple-primary to-blue-primary',
     tier: 'Expert',
     highlights: [
       'React & Next.js',
@@ -37,30 +50,16 @@ const skillCategories = [
   {
     title: 'Backend Development',
     icon: <Server className="w-8 h-8" />, 
-    gradient: 'from-accent to-purple-primary',
+    gradient: 'from-blue-primary to-purple-primary',
     tier: 'Advanced',
     highlights: [
       'Node.js & Express',
       'REST APIs & GraphQL',
       'MongoDB & PostgreSQL',
+      'System Design',
       'AWS & Cloud Services',
       'Authentication & Security',
       'DevOps & CI/CD'
-    ]
-  },
-  {
-    title: 'AI & Automation',
-    icon: <Bot className="w-8 h-8" />, 
-    gradient: 'from-amber-500 to-orange-500',
-    tier: 'Innovator',
-    highlights: [
-      'AI/ML Integration',
-      'OpenAI & LLM APIs',
-      'Prompt Engineering',
-      'Automation Tools',
-      'Data Processing',
-      'AI Product Design',
-      'Business Process Automation'
     ]
   }
 ];
@@ -73,22 +72,10 @@ const tools = [
     items: ['Git & GitHub', 'Docker', 'Kubernetes', 'VS Code', 'Postman']
   },
   {
-    category: 'Design Software',
-    icon: <Paintbrush className="w-6 h-6" />,
-    gradient: 'from-pink-500 to-purple-500',
-    items: ['Figma', 'Adobe XD', 'Sketch', 'Adobe Creative Suite', 'Framer']
-  },
-  {
     category: 'Cloud & DevOps',
     icon: <Cloud className="w-6 h-6" />,
     gradient: 'from-blue-500 to-cyan-500',
     items: ['AWS', 'Vercel', 'Netlify', 'Firebase', 'MongoDB Atlas']
-  },
-  {
-    category: 'Mobile & Cross-Platform',
-    icon: <Smartphone className="w-6 h-6" />,
-    gradient: 'from-green-500 to-emerald-500',
-    items: ['React Native', 'Progressive Web Apps', 'Responsive Design', 'Mobile-First']
   },
   {
     category: 'Security & Performance',
@@ -105,8 +92,8 @@ const tools = [
 ];
 
 const tierBadges: Record<string, JSX.Element> = {
-  'Expert': <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-purple-primary to-accent text-white rounded-full text-xs font-bold shadow-luxury"><Star className="w-4 h-4 mr-1" />Expert</span>,
-  'Advanced': <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-accent to-purple-primary text-white rounded-full text-xs font-bold shadow-luxury"><Award className="w-4 h-4 mr-1" />Advanced</span>,
+  'Expert': <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-purple-primary to-blue-primary text-white rounded-full text-xs font-bold shadow-luxury"><Star className="w-4 h-4 mr-1" />Expert</span>,
+  'Advanced': <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-blue-primary to-purple-primary text-white rounded-full text-xs font-bold shadow-luxury"><Award className="w-4 h-4 mr-1" />Advanced</span>,
   'Proven': <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full text-xs font-bold shadow-luxury"><Sparkles className="w-4 h-4 mr-1" />Proven</span>,
   'Innovator': <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full text-xs font-bold shadow-luxury"><Zap className="w-4 h-4 mr-1" />Innovator</span>
 };
@@ -146,8 +133,8 @@ const Skills = () => {
       className="py-32 relative overflow-hidden"
       style={{
         background: `
-          radial-gradient(ellipse 800px 600px at 0% 0%, rgba(90, 89, 242, 0.05), transparent),
-          radial-gradient(ellipse 1000px 800px at 100% 100%, rgba(113, 120, 255, 0.04), transparent),
+          radial-gradient(ellipse 800px 600px at 0% 0%, rgba(113, 120, 255, 0.05), transparent),
+          radial-gradient(ellipse 1000px 800px at 100% 100%, rgba(62, 143, 250, 0.04), transparent),
           linear-gradient(180deg, #fafafa 0%, #ffffff 50%, #fafafa 100%)
         `
       }}
@@ -156,14 +143,14 @@ const Skills = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <motion.div 
           className="absolute top-40 right-20 w-80 h-80 rounded-full blur-3xl"
-          style={{ background: 'linear-gradient(135deg, rgba(90, 89, 242, 0.08), rgba(113, 120, 255, 0.06))' }}
+          style={{ background: 'linear-gradient(135deg, rgba(113, 120, 255, 0.08), rgba(62, 143, 250, 0.06))' }}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={inView ? { opacity: 0.7, scale: 1 } : { opacity: 0, scale: 0.8 }}
           transition={{ duration: 2, ease: "easeOut" }}
       />
       <motion.div 
           className="absolute bottom-40 left-20 w-96 h-96 rounded-full blur-3xl"
-          style={{ background: 'linear-gradient(135deg, rgba(113, 120, 255, 0.06), rgba(90, 89, 242, 0.04))' }}
+          style={{ background: 'linear-gradient(135deg, rgba(62, 143, 250, 0.06), rgba(113, 120, 255, 0.04))' }}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={inView ? { opacity: 0.6, scale: 1 } : { opacity: 0, scale: 0.8 }}
           transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
@@ -186,8 +173,8 @@ const Skills = () => {
           Technical <span className="gradient-text-premium">Excellence</span>
           </h2>
         <p className="text-xl text-dark/80 leading-relaxed">
-          My comprehensive skill set spanning modern development technologies, 
-          innovative design principles, and emerging AI technologies.
+          Specializing in AI & LangChain development, GenAI applications, and RAG systems, 
+          combined with modern development technologies for building intelligent, scalable solutions.
           </p>
         </motion.div>
 
@@ -196,7 +183,7 @@ const Skills = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-20"
+        className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto mb-20"
         >
         {skillCategories.map((category, index) => (
             <motion.div 
@@ -224,7 +211,7 @@ const Skills = () => {
               <ul className="flex flex-wrap gap-3 mb-4">
                 {category.highlights.map((highlight, i) => (
                   <li key={highlight} className="inline-flex items-center px-4 py-2 bg-gradient-premium-soft text-purple-primary font-semibold rounded-xl text-sm shadow-sm hover:shadow-luxury transition-all duration-300 hover-lift">
-                    <Sparkles className="w-4 h-4 mr-2 text-accent" />
+                    <Sparkles className="w-4 h-4 mr-2 text-blue-primary" />
                     {highlight}
                   </li>
                 ))}

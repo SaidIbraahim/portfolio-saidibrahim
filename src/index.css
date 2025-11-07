@@ -10,17 +10,17 @@
     --card-foreground: 0 0% 10%;  /* #1a1a1a */
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;  /* #1a1a1a */
-    --primary: 246 91% 66%;  /* #5a59f2 */
+    --primary: 242 100% 73%;  /* #7178ff */
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 10%;  /* #1a1a1a */
     --secondary-foreground: 0 0% 100%;
-    --accent: 242 100% 73%;  /* #7178ff */
+    --accent: 210 95% 61%;  /* #3e8ffa */
     --accent-foreground: 0 0% 100%;
     --muted: 210 40% 98%;
     --muted-foreground: 215 25% 70%;
     --border: 0 0% 93%;
     --input: 0 0% 93%;
-    --ring: 246 91% 66%;  /* #5a59f2 */
+    --ring: 242 100% 73%;  /* #7178ff */
     --radius: 0.75rem;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -37,17 +37,17 @@
     --card-foreground: 0 0% 98%;  /* #fafafa */
     --popover: 0 0% 12%;
     --popover-foreground: 0 0% 98%;  /* #fafafa */
-    --primary: 246 91% 66%;  /* #5a59f2 */
+    --primary: 242 100% 73%;  /* #7178ff */
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 8%;  /* #141414 */
     --secondary-foreground: 0 0% 98%;  /* #fafafa */
-    --accent: 242 100% 73%;  /* #7178ff */
+    --accent: 210 95% 61%;  /* #3e8ffa */
     --accent-foreground: 0 0% 100%;
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 75%;
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 246 91% 66%;  /* #5a59f2 */
+    --ring: 242 100% 73%;  /* #7178ff */
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -88,11 +88,11 @@
 }
 
 .gradient-text {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-purple-primary via-accent to-purple-primary;
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-purple-primary via-blue-primary to-purple-primary;
 }
 
 .gradient-text-premium {
-  background: linear-gradient(135deg, #5a59f2 0%, #7178ff 50%, #8b93ff 100%);
+  background: linear-gradient(135deg, #7178ff 0%, #3e8ffa 50%, #f27002 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -121,20 +121,20 @@
 
 /* Luxury Shadow Effects */
 .shadow-luxury {
-  box-shadow: 0 25px 50px -12px rgba(90, 89, 242, 0.25), 0 0 0 1px rgba(90, 89, 242, 0.05);
+  box-shadow: 0 25px 50px -12px rgba(113, 120, 255, 0.25), 0 0 0 1px rgba(113, 120, 255, 0.05);
 }
 
 .shadow-luxury-hover {
-  box-shadow: 0 32px 64px -12px rgba(90, 89, 242, 0.35), 0 0 0 1px rgba(90, 89, 242, 0.1);
+  box-shadow: 0 32px 64px -12px rgba(113, 120, 255, 0.35), 0 0 0 1px rgba(113, 120, 255, 0.1);
 }
 
 /* Premium Gradient Backgrounds */
 .bg-gradient-premium {
-  background: linear-gradient(135deg, #5a59f2 0%, #7178ff 100%);
+  background: linear-gradient(135deg, #7178ff 0%, #3e8ffa 100%);
 }
 
 .bg-gradient-premium-soft {
-  background: linear-gradient(135deg, rgba(90, 89, 242, 0.1) 0%, rgba(113, 120, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(113, 120, 255, 0.1) 0%, rgba(62, 143, 250, 0.1) 100%);
 }
 
 /* Sophisticated Hover Effects */
@@ -164,12 +164,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #5a59f2, #7178ff);
+  background: linear-gradient(to bottom, #7178ff, #3e8ffa);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #4c4bf0, #6366f1);
+  background: linear-gradient(to bottom, #6066f0, #2d7ff0);
 }
 
 

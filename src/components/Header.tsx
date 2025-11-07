@@ -30,8 +30,6 @@ const Header = () => {
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Blog', href: '#blog' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -40,7 +38,7 @@ const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 w-full z-50 transition-all duration-500 bg-gradient-to-r from-purple-primary to-accent shadow-luxury ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 bg-gradient-to-r from-purple-primary to-blue-primary shadow-luxury ${
         scrolled ? 'backdrop-blur-lg py-4' : 'py-6'
       }`}
     >
@@ -80,11 +78,11 @@ const Header = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative text-white hover:text-accent font-semibold transition-all duration-300 group px-2 py-1"
+              className="relative text-white hover:text-orange-primary font-semibold transition-all duration-300 group px-2 py-1"
             >
               {item.name}
               <motion.div
-                className="absolute bottom-0 left-0 h-0.5 bg-accent rounded-full"
+                className="absolute bottom-0 left-0 h-0.5 bg-orange-primary rounded-full"
                 initial={{ width: 0 }}
                 whileHover={{ width: "100%" }}
                 transition={{ duration: 0.3 }}
@@ -144,11 +142,11 @@ const Header = () => {
               <div className="py-8 px-8 border-b border-purple-primary/10 bg-gradient-premium-soft">
                 <div className="flex items-center space-x-2 font-black text-2xl text-dark">
                   <span className="gradient-text-premium">Said</span>
-                  <span className="text-accent">.</span>
-                  <Sparkles className="w-5 h-5 text-accent ml-2" />
+                  <span className="text-blue-primary">.</span>
+                  <Sparkles className="w-5 h-5 text-blue-primary ml-2" />
                 </div>
                 <p className="text-sm text-dark/70 mt-2">
-                  Software & AI Solutions Developer
+                  AI & Software Solutions Developer
                 </p>
               </div>
               

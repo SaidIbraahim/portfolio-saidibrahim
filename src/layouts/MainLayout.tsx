@@ -13,8 +13,8 @@ interface MainLayoutProps {
 
 const MainLayout: React.FC<MainLayoutProps> = ({
   children,
-  title = 'Said Ibrahim - Software Developer & UX Designer',
-  description = 'Expert Software Developer and UX Designer in Somalia, creating beautiful digital experiences that merge technical excellence with intuitive design.',
+  title = 'Said Ibrahim - AI & Software Solutions Developer',
+  description = 'AI & Software Solutions Developer specializing in GenAI Applications, Foundation Models & RAG Systems. Building smarter, context-aware solutions through LangChain development and AI agents for business automation.',
 }) => {
   return (
     <>

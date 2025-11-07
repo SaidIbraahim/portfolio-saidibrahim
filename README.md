@@ -1,12 +1,12 @@
 # Said Ibrahim's Portfolio
 
-A modern, visually stunning portfolio website showcasing Said Ibrahim's skills, projects, and experience as a Software Developer and UX Designer.
+A modern, visually stunning portfolio website showcasing Said Ibrahim's skills, projects, and experience as an AI & Software Solutions Developer specializing in GenAI Applications, Foundation Models & RAG Systems.
 
 ## 🚀 Features
 
 - **Modern Design**: Clean, professional interface with micro-animations and visual appeal
 - **Responsive Layout**: Fully responsive design that works on all devices
-- **Interactive Sections**: Engaging sections for About, Skills, Projects, Testimonials, and Contact
+- **Interactive Sections**: Engaging sections for About, Skills, Projects, and Contact
 - **Optimized Performance**: Fast loading times and smooth animations
 - **Accessibility**: WCAG compliant design for all users
 - **SEO Friendly**: Structured for optimal search engine visibility

@@ -48,19 +48,19 @@ const Hero = () => {
       value: "5",
       label: "Years Experience",
       icon: <User className="h-6 w-6 text-purple-primary" />,
-      gradient: "from-purple-primary to-accent"
+      gradient: "from-purple-primary to-blue-primary"
     },
     {
       value: "25+",
       label: "Projects Completed",
       icon: <Code className="h-6 w-6 text-purple-primary" />,
-      gradient: "from-accent to-purple-primary"
+      gradient: "from-blue-primary to-purple-primary"
     },
     {
       value: "10+",
       label: "System Design",
       icon: <LayoutGrid className="h-6 w-6 text-purple-primary" />,
-      gradient: "from-purple-primary via-accent to-purple-primary"
+      gradient: "from-purple-primary via-blue-primary to-orange-primary"
     },
   ];
 
@@ -75,7 +75,7 @@ const Hero = () => {
       icon: <Linkedin className="h-6 w-6" />,
       href: "https://www.linkedin.com/in/sa-ibrahim", 
       label: "LinkedIn Profile",
-      color: "hover:text-accent"
+      color: "hover:text-blue-primary"
     },
     { 
       icon: <Instagram className="h-6 w-6" />,
@@ -87,7 +87,7 @@ const Hero = () => {
       icon: <BarChart2 className="h-6 w-6" />,
       href: "https://www.tiktok.com/@saidibrahim.tech", 
       label: "TikTok Profile",
-      color: "hover:text-accent"
+      color: "hover:text-orange-primary"
     }
   ];
 
@@ -98,8 +98,8 @@ const Hero = () => {
       className="min-h-screen flex items-center pt-32 pb-20 relative overflow-hidden"
       style={{
         background: `
-          radial-gradient(ellipse 800px 600px at 50% 0%, rgba(90, 89, 242, 0.08), transparent),
-          radial-gradient(ellipse 1200px 800px at 100% 100%, rgba(113, 120, 255, 0.06), transparent),
+          radial-gradient(ellipse 800px 600px at 50% 0%, rgba(113, 120, 255, 0.08), transparent),
+          radial-gradient(ellipse 1200px 800px at 100% 100%, rgba(62, 143, 250, 0.06), transparent),
           linear-gradient(180deg, #fafafa 0%, #ffffff 100%)
         `
       }}
@@ -110,13 +110,13 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.8, rotate: -45 }}
           animate={inView ? { opacity: 0.03, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: -45 }}
           transition={{ duration: 3, ease: "easeOut" }}
-          className="absolute top-1/4 -right-40 w-96 h-96 bg-gradient-to-br from-purple-primary to-accent rounded-full blur-3xl"
+          className="absolute top-1/4 -right-40 w-96 h-96 bg-gradient-to-br from-purple-primary to-blue-primary rounded-full blur-3xl"
         />
         <motion.div
           initial={{ opacity: 0, scale: 0.8, rotate: 45 }}
           animate={inView ? { opacity: 0.02, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: 45 }}
           transition={{ duration: 3, delay: 0.5, ease: "easeOut" }}
-          className="absolute bottom-1/4 -left-40 w-80 h-80 bg-gradient-to-tr from-accent to-purple-primary rounded-full blur-3xl"
+          className="absolute bottom-1/4 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-primary to-purple-primary rounded-full blur-3xl"
         />
         
         {/* Floating Particles */}
@@ -135,7 +135,7 @@ const Hero = () => {
               delay: i * 0.5,
               ease: "easeInOut"
             }}
-            className="absolute w-2 h-2 bg-gradient-to-r from-purple-primary to-accent rounded-full"
+            className="absolute w-2 h-2 bg-gradient-to-r from-purple-primary to-blue-primary rounded-full"
             style={{
               left: `${20 + Math.random() * 60}%`,
               top: `${60 + Math.random() * 20}%`,
@@ -154,7 +154,7 @@ const Hero = () => {
               variants={heroTextVariants}
             >
               <motion.div 
-                className="h-1 bg-gradient-to-r from-purple-primary to-accent rounded-full"
+                className="h-1 bg-gradient-to-r from-purple-primary to-blue-primary rounded-full"
                 initial={{ width: 0 }}
                 animate={inView ? { width: 48 } : { width: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
@@ -162,7 +162,7 @@ const Hero = () => {
               <div className="flex items-center space-x-2">
                 <Sparkles className="h-5 w-5 text-purple-primary" />
                 <span className="text-purple-primary font-semibold tracking-wider uppercase text-sm bg-gradient-premium-soft px-4 py-2 rounded-full">
-                  Software & AI Solutions Engineer
+                  AI & Software Solutions Developer
                 </span>
               </div>
             </motion.div>
@@ -174,9 +174,9 @@ const Hero = () => {
               transition={{ delay: 0.4 }}
             >
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] text-dark mb-6">
-                I build <span className="gradient-text-premium">smart web software</span> <br />
-                and <span className="gradient-text-premium">AI tools</span> that solve <br />
-                real business problems.
+                Building <span className="gradient-text-premium">GenAI Applications</span> <br />
+                and <span className="gradient-text-premium">AI Agents</span> that <br />
+                boost productivity.
               </h1>
             </motion.div>
 
@@ -187,7 +187,8 @@ const Hero = () => {
               variants={heroTextVariants}
               transition={{ delay: 0.7 }}
             >
-              From automation to custom platforms — everything is built to save time, cut manual work, and just work.<br />
+              LangChain development • AI agents • Business automation<br />
+              Saving time and boosting productivity with intelligent, context-aware solutions.<br />
              
             </motion.p>
 
@@ -264,7 +265,7 @@ const Hero = () => {
                     animate={inView ? { scale: 1 } : { scale: 1.3 }}
                     transition={{ duration: 2, ease: "easeOut" }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-primary/20 via-transparent to-accent/10" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-purple-primary/20 via-transparent to-blue-primary/10" />
                 </div>
               </div>
             </motion.div>
@@ -278,7 +279,7 @@ const Hero = () => {
             />
             
             <motion.div
-              className="absolute -top-8 -right-8 h-24 w-24 bg-gradient-to-br from-accent to-purple-primary rounded-2xl shadow-luxury"
+              className="absolute -top-8 -right-8 h-24 w-24 bg-gradient-to-br from-blue-primary to-purple-primary rounded-2xl shadow-luxury"
               initial={{ opacity: 0, x: 30, rotate: 10 }}
               animate={inView ? { opacity: 1, x: 0, rotate: 0 } : { opacity: 0, x: 30, rotate: 10 }}
               transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}

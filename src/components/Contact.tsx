@@ -99,7 +99,7 @@ const Contact = () => {
       value: 'Garowe, Somalia',
       href: 'https://goo.gl/maps/garowe',
       description: 'Available for remote collaboration worldwide',
-      gradient: 'from-purple-primary to-accent'
+      gradient: 'from-purple-primary to-blue-primary'
     },
   ];
 
@@ -157,8 +157,8 @@ const Contact = () => {
       className="py-32 relative overflow-hidden"
       style={{
         background: `
-          radial-gradient(ellipse 800px 600px at 0% 50%, rgba(90, 89, 242, 0.04), transparent),
-          radial-gradient(ellipse 1000px 800px at 100% 50%, rgba(113, 120, 255, 0.03), transparent),
+          radial-gradient(ellipse 800px 600px at 0% 50%, rgba(113, 120, 255, 0.04), transparent),
+          radial-gradient(ellipse 1000px 800px at 100% 50%, rgba(62, 143, 250, 0.03), transparent),
           linear-gradient(180deg, #fafafa 0%, #ffffff 50%, #fafafa 100%)
         `
       }}
@@ -167,14 +167,14 @@ const Contact = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
           className="absolute top-20 right-0 w-96 h-96 rounded-full blur-3xl"
-          style={{ background: 'linear-gradient(135deg, rgba(90, 89, 242, 0.06), rgba(113, 120, 255, 0.04))' }}
+          style={{ background: 'linear-gradient(135deg, rgba(113, 120, 255, 0.06), rgba(62, 143, 250, 0.04))' }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={inView ? { opacity: 0.7, scale: 1 } : { opacity: 0, scale: 0.8 }}
           transition={{ duration: 2, ease: "easeOut" }}
         />
         <motion.div 
           className="absolute bottom-20 left-0 w-80 h-80 rounded-full blur-3xl"
-          style={{ background: 'linear-gradient(135deg, rgba(113, 120, 255, 0.04), rgba(90, 89, 242, 0.06))' }}
+          style={{ background: 'linear-gradient(135deg, rgba(62, 143, 250, 0.04), rgba(113, 120, 255, 0.06))' }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={inView ? { opacity: 0.6, scale: 1 } : { opacity: 0, scale: 0.8 }}
           transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
@@ -195,12 +195,14 @@ const Contact = () => {
             </span>
           </div>
           <h2 className="text-5xl md:text-6xl font-black mb-8 text-dark leading-tight">
-            Software & AI Solutions Engineer
+            AI & Software Solutions Developer
           </h2>
+          <p className="text-xl text-dark/80 leading-relaxed max-w-3xl mx-auto mb-4">
+            GenAI Applications, Foundation Models & RAG Systems
+          </p>
           <p className="text-xl text-dark/80 leading-relaxed max-w-3xl mx-auto">
-            I build smart web software and AI tools that solve real business problems.<br />
-            From automation to custom platforms — everything is built to save time, cut manual work, and just work.<br />
-           
+            Building smarter, context-aware solutions through LangChain development and AI agents.<br />
+            Specializing in business automation that saves time and boosts productivity.
           </p>
         </motion.div>
 
@@ -449,7 +451,7 @@ const Contact = () => {
                     href="https://wa.me/252905345879?text=Hi%20Said%2C%20I%27m%20interested%20in%20your%20services.%20Can%20we%20talk%3F"
                     target="_blank"
                     rel="noopener noreferrer"
-                      className="text-purple-primary hover:text-accent font-semibold ml-1"
+                      className="text-purple-primary hover:text-blue-primary font-semibold ml-1"
                   >
                       message me on WhatsApp
                   </a>

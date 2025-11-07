@@ -38,3 +38,41 @@ dist-ssr
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Test files (keeping test structure but can exclude coverage)
+coverage
+.nyc_output
+
+# Temporary files
+*.tmp
+*.temp
+*~
+*.bak
+*.swp
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# VS Code extensions and settings
+.vscode/extensions/
+.vscode/settings.json
+.vscode/launch.json
+
+# Cursor and other editor files
+.cursor/
+.windsurf/
+.codeium/
+
+# Cache and temporary files
+.cache/
+*.cache
+
+# System files
+google1af4ccd2203ce1a1 (1).html

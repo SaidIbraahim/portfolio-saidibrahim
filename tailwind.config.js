@@ -14,14 +14,17 @@ export default {
   		colors: {
         // Direct color values
         blue: {
-          primary: '#5a59f2',
+          primary: '#3e8ffa',
         },
         dark: '#1a1a1a',
         light: '#fafafa',
         accent: '#7178ff',
+        orange: {
+          primary: '#f27002',
+        },
         purple: {
-          primary: '#5a59f2',
-          accent: '#7178ff',
+          primary: '#7178ff',
+          accent: '#3e8ffa',
         },
         // HSL variables
   			primary: {

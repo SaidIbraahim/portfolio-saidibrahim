@@ -1,11 +1,39 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Figma, Shield, Users, Heart, Zap, FileText, GraduationCap, Building, Bot } from 'lucide-react';
+import { ExternalLink, Github, Figma, Shield, Users, Heart, Zap, FileText, GraduationCap, Building, Bot, Plane, Youtube } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import voteimg from '../assets/images/voteimg.jpg';
 import AIimg from '../assets/images/AIimg.jpg';
 
 const projects = [
+  {
+    title: 'Dalxiis Tourism - Tourism Platform',
+    description: 'A comprehensive tourism company web platform with modern admin dashboard, CMS capabilities, and public-facing pages for Dalxiis Tourism Company.',
+    tagline: 'Your gateway to unforgettable journeys',
+    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80',
+    tech: ['React', 'Next.js', 'Admin Dashboard', 'CMS', 'Tourism Management', 'Payment Integration'],
+    liveUrl: 'https://www.dalxiistourism.com/',
+    githubUrl: '',
+    type: 'development',
+    category: 'Business Platform',
+    icon: <Plane className="h-6 w-6" />,
+    gradient: 'from-blue-primary to-purple-primary',
+    featured: true
+  },
+  {
+    title: 'YouTube Search Agent - AI Agent',
+    description: 'An intelligent AI agent for YouTube interaction that can search videos, extract transcripts, fetch trending content, and generate summaries using recursive tool-calling with LangChain.',
+    tagline: 'AI-powered YouTube intelligence',
+    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80',
+    tech: ['AI/ML', 'LangChain', 'YouTube API', 'Recursive Tool-Calling', 'Transcript Extraction', 'Natural Language Processing'],
+    liveUrl: 'https://youtube-search-agent.vercel.app/',
+    githubUrl: '',
+    type: 'development',
+    category: 'AI Innovation',
+    icon: <Youtube className="h-6 w-6" />,
+    gradient: 'from-orange-primary to-purple-primary',
+    featured: true
+  },
   {
     title: 'Tixraac.ai - AI Secretary',
     description: 'Revolutionary AI-powered document management platform that reads, organizes, and remembers documents for life. Send documents via Telegram and let AI handle the rest.',
@@ -17,7 +45,7 @@ const projects = [
     type: 'development',
     category: 'AI Innovation',
     icon: <Bot className="h-6 w-6" />,
-    gradient: 'from-purple-primary to-accent',
+    gradient: 'from-purple-primary to-blue-primary',
     featured: true
   },
   {
@@ -138,8 +166,8 @@ const Projects = () => {
       className="py-32 relative overflow-hidden"
       style={{
         background: `
-          radial-gradient(ellipse 1200px 800px at 100% 0%, rgba(90, 89, 242, 0.03), transparent),
-          radial-gradient(ellipse 800px 600px at 0% 100%, rgba(113, 120, 255, 0.04), transparent),
+          radial-gradient(ellipse 1200px 800px at 100% 0%, rgba(113, 120, 255, 0.03), transparent),
+          radial-gradient(ellipse 800px 600px at 0% 100%, rgba(62, 143, 250, 0.04), transparent),
           linear-gradient(180deg, #ffffff 0%, #fafafa 100%)
         `
       }}
@@ -150,13 +178,13 @@ const Projects = () => {
           initial={{ opacity: 0, rotate: -10 }}
           animate={inView ? { opacity: 0.02, rotate: 0 } : { opacity: 0, rotate: -10 }}
           transition={{ duration: 4, ease: "easeOut" }}
-          className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-purple-primary to-accent rounded-full blur-3xl"
+          className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-purple-primary to-blue-primary rounded-full blur-3xl"
         />
         <motion.div
           initial={{ opacity: 0, rotate: 10 }}
           animate={inView ? { opacity: 0.03, rotate: 0 } : { opacity: 0, rotate: 10 }}
           transition={{ duration: 4, delay: 0.5, ease: "easeOut" }}
-          className="absolute bottom-20 left-0 w-80 h-80 bg-gradient-to-tl from-accent to-purple-primary rounded-full blur-3xl"
+          className="absolute bottom-20 left-0 w-80 h-80 bg-gradient-to-tl from-blue-primary to-purple-primary rounded-full blur-3xl"
         />
       </div>
 
@@ -229,7 +257,7 @@ const Projects = () => {
                         {project.title}
                       </h3>
                       {project.tagline && (
-                        <p className="text-sm text-accent font-semibold italic mb-3">
+                        <p className="text-sm text-blue-primary font-semibold italic mb-3">
                           "{project.tagline}"
                         </p>
                       )}
@@ -263,7 +291,7 @@ const Projects = () => {
                       <ExternalLink size={18} className="mr-2" />
                       {project.type === 'development' ? 'Live Demo' : 'Case Study'}
                     </a>
-                    {project.type === 'development' ? (
+                    {project.type === 'development' && project.githubUrl ? (
                       <a
                         href={project.githubUrl}
                         target="_blank"
@@ -360,12 +388,12 @@ const Projects = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center text-purple-primary hover:text-accent font-semibold text-sm transition-colors duration-300"
+                      className="flex items-center text-purple-primary hover:text-blue-primary font-semibold text-sm transition-colors duration-300"
                     >
                       <ExternalLink size={16} className="mr-1" />
                       {project.type === 'development' ? 'Demo' : 'Study'}
                     </a>
-                    {project.type === 'development' ? (
+                    {project.type === 'development' && project.githubUrl ? (
                       <a
                         href={project.githubUrl}
                         target="_blank"

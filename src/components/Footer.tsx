@@ -130,15 +130,15 @@ const Footer = () => {
             <div className="flex items-center space-x-2 mb-6">
               <h3 className="text-3xl font-black flex items-center">
                 <span className="gradient-text-premium">Said</span>
-                <span className="text-accent ml-1">.</span>
-                <Sparkles className="w-6 h-6 text-accent ml-2" />
+                <span className="text-blue-primary ml-1">.</span>
+                <Sparkles className="w-6 h-6 text-blue-primary ml-2" />
             </h3>
             </div>
             
             <p className="text-light/80 max-w-lg leading-relaxed text-lg">
-              I build smart web software and AI tools that solve real business problems.<br />
-              From automation to custom platforms — everything is built to save time, cut manual work, and just work.<br />
-             
+              Building smarter, context-aware solutions through LangChain development and AI agents.<br />
+              GenAI Applications, Foundation Models & RAG Systems for business automation.<br />
+              Saving time and boosting productivity with intelligent AI solutions.
             </p>
 
             {/* Services */}
